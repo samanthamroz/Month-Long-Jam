@@ -20,7 +20,7 @@ public class BreakableWall : InteractableObject
         
     }
 
-    public void BreakWall() {
+    public override void Interaction() {
         gameObject.GetComponent<Tilemap>().SetTile(new Vector3Int(7,7,0), changeToTiles[0]);
         gameObject.GetComponent<Tilemap>().SetTile(new Vector3Int(8,7,0), changeToTiles[1]);
         gameObject.GetComponent<Tilemap>().SetTile(new Vector3Int(7,6,0), changeToTiles[2]);
