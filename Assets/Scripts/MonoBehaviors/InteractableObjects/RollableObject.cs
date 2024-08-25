@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RollableObject : InteractableObject
@@ -8,6 +9,7 @@ public class RollableObject : InteractableObject
     public bool canBreakObjects;
     public int hitboxYOffset = -1;
     public float thrust = 5f;
+    public PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,9 +55,11 @@ public class RollableObject : InteractableObject
     private IEnumerator RollUntilHit()
     {
         while (math.abs(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude) > 0.1f) {
+            playerController.SetCanMove(false);
             yield return new WaitForFixedUpdate();
         }
         Destroy(gameObject);
+        playerController.SetCanMove(true);
     }
 
     
