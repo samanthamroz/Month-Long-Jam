@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RollableObject : InteractableObject
 {
+    public bool canBreakObjects;
     public int hitboxYOffset = -1;
     public float thrust = 5f;
     // Start is called before the first frame update
@@ -41,18 +42,20 @@ public class RollableObject : InteractableObject
         }
 
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation; //unlock x and y
-        gameObject.GetComponent<Rigidbody2D>().AddForce(direction * thrust);
-        //StartCoroutine(ReapplyConstraintsAfterDelay());
+        gameObject.GetComponent<Rigidbody2D>().velocity = direction * thrust;
+
+        //take away player's movement
+
+        StartCoroutine(RollUntilHit());
 
     }
 
-    private IEnumerator ReapplyConstraintsAfterDelay()
+    private IEnumerator RollUntilHit()
     {
-        // Wait for the next fixed frame (where physics calculations are done)
-        yield return new WaitForFixedUpdate();
-
-        // Reapply the constraints
-        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; //relock x and y
+        while (math.abs(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude) > 0.1f) {
+            yield return new WaitForFixedUpdate();
+        }
+        Destroy(gameObject);
     }
 
     

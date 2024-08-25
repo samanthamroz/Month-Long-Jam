@@ -2973,6 +2973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d266859637b0714ab9ba533f8b1cace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canBreakObjects: 0
   hitboxYOffset: -1
   thrust: 10
 --- !u!212 &1450938257
