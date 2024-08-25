@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         if (movementInput != Vector2.zero) {
-            gameObject.transform.Translate(new Vector3(movementInput.x, movementInput.y, 0) * speed * Time.deltaTime);
+            gameObject.GetComponent<Rigidbody2D>().MovePosition(new Vector3(movementInput.x, movementInput.y, 0) * speed * Time.deltaTime);
         }
     }
 

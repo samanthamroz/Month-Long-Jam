@@ -5,17 +5,29 @@ using UnityEngine;
 
 public class RotatingPushableObject : InteractableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Collider2D clockwiseCollider1, clockwiseCollider2, counterClockwiseCollider1, counterClockwiseCollider2;
 
     public override void Interaction(GameObject player) {
-        if (player.transform.position.x < gameObject.transform.position.x) { //player on left
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, gameObject.transform.rotation.z - 45);
-        } else if (player.transform.position.x > gameObject.transform.position.x) { //player on right
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, gameObject.transform.rotation.z + 45);
+        Collider2D playerCollider = player.GetComponent<Collider2D>();
+        Rigidbody2D rb2D = gameObject.GetComponent<Rigidbody2D>();
+
+        rb2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY; //unlock rotation
+
+        if (clockwiseCollider1.IsTouching(playerCollider) || clockwiseCollider2.IsTouching(playerCollider)) {
+            rb2D.MoveRotation(rb2D.rotation - 22.5f);
+        } else if (counterClockwiseCollider1.IsTouching(playerCollider) || counterClockwiseCollider2.IsTouching(playerCollider)) {
+            rb2D.MoveRotation(rb2D.rotation + 22.5f);
         }
+        
+        StartCoroutine(ReapplyConstraintsAfterDelay());
+    }
+
+    private IEnumerator ReapplyConstraintsAfterDelay()
+    {
+        // Wait for the next fixed frame (where physics calculations are done)
+        yield return new WaitForFixedUpdate();
+
+        // Reapply the constraints
+        gameObject.GetComponent<Rigidbody2D>().constraints =  RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; //relock x and y
     }
 }
