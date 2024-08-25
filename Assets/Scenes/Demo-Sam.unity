@@ -10222,10 +10222,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4368140283364166464, guid: 07f1534343069ce45a9d7cfed6e088aa, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 6794374430400551380, guid: 07f1534343069ce45a9d7cfed6e088aa, type: 3}
       propertyPath: m_DefaultControlScheme
       value: Keyboard/Mouse

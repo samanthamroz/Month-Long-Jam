@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Month-Long-Jam.sln"
+    "dotnet.defaultSolution": "MonthLongJam.sln"
 }
