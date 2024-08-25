@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 //test
 public class PlayerController : MonoBehaviour
 {
+    private InteractableObject currentInteraction;
     private Vector2 movementInput;
     public float speed;
 
@@ -24,6 +26,21 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnInteract() {
-        //interactedObject.Interaction(gameObject);
+        if (currentInteraction != null) {
+            currentInteraction.Interaction(gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        try {
+            currentInteraction = other.gameObject.GetComponent<InteractableObject>();
+        } catch (Exception) {
+            currentInteraction = null;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other) {
+        currentInteraction = null;
     }
 }
