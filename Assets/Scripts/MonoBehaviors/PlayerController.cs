@@ -1,23 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private InteractableObject currentInteraction;
+    private Vector2 movementInput;
+    public float speed;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        OnInteract();
+        if (movementInput != Vector2.zero) {
+            gameObject.transform.Translate(new Vector3(movementInput.x, movementInput.y, 0) * speed * Time.deltaTime);
+        }
     }
-    void OnInteract() {
-        currentInteraction.Interaction();
+
+    private void OnMove(InputValue value) {
+        movementInput = value.Get<Vector2>();
+    }
+
+    private void OnInteract() {
+        
     }
 }
