@@ -24,6 +24,6 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnInteract() {
-        
+        //interactedObject.Interaction(gameObject);
     }
 }

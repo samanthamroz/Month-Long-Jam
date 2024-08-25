@@ -10,7 +10,7 @@ public class BreakableWall : InteractableObject
     [SerializeField] private TileBase[] changeToTiles;
     private bool isBroken = false;
 
-    public override void Interaction() {
+    public override void Interaction(GameObject player) {
         if (!isBroken) {
             gameObject.GetComponent<Tilemap>().SetTile(new Vector3Int(7,7,0), changeToTiles[0]);
             gameObject.GetComponent<Tilemap>().SetTile(new Vector3Int(8,7,0), changeToTiles[1]);
