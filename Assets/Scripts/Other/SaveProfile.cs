@@ -15,9 +15,9 @@ public sealed class SaveProfile<T> where T : SaveProfileData {
 public abstract record SaveProfileData { }
 
 public record PlayerSaveData : SaveProfileData {
-    public Vector2 position;
+    public Vector3 position;
 }
 
 public record WorldSaveData : SaveProfileData {
-    public Vector2 position;
+    public Vector3 position;
 }
