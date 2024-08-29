@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private InteractableObject currentInteraction;
     private Vector2 movementInput;
     public float speed;
-    private bool canMove = true; //used to momentarily stop movement during minor events
+    public bool canMove = true; //used to momentarily stop movement during minor events
 
     // Start is called before the first frame update
     void Start()

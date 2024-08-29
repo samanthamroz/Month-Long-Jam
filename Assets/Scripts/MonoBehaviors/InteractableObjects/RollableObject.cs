@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -10,7 +11,7 @@ public class RollableObject : InteractableObject
     public int hitboxYOffset = -1;
     public float thrust = 5f;
     public PlayerController playerController;
-    // Start is called before the first frame update
+
     void Start()
     {
         
@@ -28,13 +29,16 @@ public class RollableObject : InteractableObject
             if (horizontalDifference < 0) //check for left
             {
                 direction  = Vector3.left;
+
             } else { //check for right
                 direction = Vector3.right;
+
             }
         } else {
             if (verticalDifference < 0) //check for top
             {
                 direction = Vector3.down;
+
             }
             //check for bottom
             else
@@ -55,11 +59,11 @@ public class RollableObject : InteractableObject
     private IEnumerator RollUntilHit()
     {
         while (math.abs(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude) > 0.1f) {
-            playerController.SetCanMove(false);
             yield return new WaitForFixedUpdate();
         }
         Destroy(gameObject);
-        playerController.SetCanMove(true);
+        //playerController.SetCanMove(true);
+        
     }
 
     
