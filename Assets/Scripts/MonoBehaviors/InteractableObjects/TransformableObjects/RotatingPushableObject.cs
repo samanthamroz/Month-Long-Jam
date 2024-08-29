@@ -14,9 +14,9 @@ public class RotatingPushableObject : TransformableObject
         rb2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY; //unlock rotation
 
         if (clockwiseCollider1.IsTouching(playerCollider) || clockwiseCollider2.IsTouching(playerCollider)) {
-            rb2D.MoveRotation(rb2D.rotation - 22.5f);
+            rb2D.MoveRotation(rb2D.rotation - 45f);
         } else if (counterClockwiseCollider1.IsTouching(playerCollider) || counterClockwiseCollider2.IsTouching(playerCollider)) {
-            rb2D.MoveRotation(rb2D.rotation + 22.5f);
+            rb2D.MoveRotation(rb2D.rotation + 45f);
         }
         
         StartCoroutine(ReapplyConstraintsAfterDelay());
