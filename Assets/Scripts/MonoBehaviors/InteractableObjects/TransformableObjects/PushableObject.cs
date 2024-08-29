@@ -1,17 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class RollableObject : InteractableObject
+public class PushableObject : TransformableObject
 {
-    public bool canBreakObjects;
     public int hitboxYOffset = -1;
-    public float thrust = 5f;
-    public PlayerController playerController;
-
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -23,47 +18,39 @@ public class RollableObject : InteractableObject
         float verticalDifference = gameObject.transform.position.y - (player.transform.position.y + hitboxYOffset);
 
         //Debug.Log("Horizontal: " + horizontalDifference + ", Vertical: " + verticalDifference);
-        Vector3 direction;
+        Vector3 moveToPosition;
 
         if (math.abs(horizontalDifference) > math.abs(verticalDifference)) {
             if (horizontalDifference < 0) //check for left
             {
-                direction  = Vector3.left;
-
+                moveToPosition = new Vector3(gameObject.transform.position.x - 1, gameObject.transform.position.y, 0);
             } else { //check for right
-                direction = Vector3.right;
-
+                moveToPosition = new Vector3(gameObject.transform.position.x + 1, gameObject.transform.position.y, 0);
             }
         } else {
             if (verticalDifference < 0) //check for top
             {
-                direction = Vector3.down;
-
+                moveToPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1, 0);
             }
             //check for bottom
             else
             {
-                direction = Vector3.up;
+                moveToPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, 0);
             }
         }
 
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation; //unlock x and y
-        gameObject.GetComponent<Rigidbody2D>().velocity = direction * thrust;
-
-        //take away player's movement
-
-        StartCoroutine(RollUntilHit());
-
+        gameObject.GetComponent<Rigidbody2D>().MovePosition(moveToPosition); //move (taking physics into accound)
+        StartCoroutine(ReapplyConstraintsAfterDelay());
     }
 
-    private IEnumerator RollUntilHit()
+    private IEnumerator ReapplyConstraintsAfterDelay()
     {
-        while (math.abs(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude) > 0.1f) {
-            yield return new WaitForFixedUpdate();
-        }
-        Destroy(gameObject);
-        //playerController.SetCanMove(true);
-        
+        // Wait for the next fixed frame (where physics calculations are done)
+        yield return new WaitForFixedUpdate();
+
+        // Reapply the constraints
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; //relock x and y
     }
 
     
@@ -80,4 +67,5 @@ public class RollableObject : InteractableObject
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         }
     }
+    
 }

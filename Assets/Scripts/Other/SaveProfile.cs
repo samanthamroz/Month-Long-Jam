@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public sealed class SaveProfile<T> where T : SaveProfileData {
     public string name;
@@ -18,6 +21,9 @@ public record PlayerSaveData : SaveProfileData {
     public Vector3 position;
 }
 
-public record WorldSaveData : SaveProfileData {
-    public Vector3 position;
+public record SceneSaveData : SaveProfileData {
+    public Scene scene;
+    public List<Vector3> objectPositions;
+    public List<Quaternion> objectRotations;
+    public List<bool> objectStates;
 }

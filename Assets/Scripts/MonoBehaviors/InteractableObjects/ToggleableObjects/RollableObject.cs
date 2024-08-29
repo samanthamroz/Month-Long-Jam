@@ -1,15 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PushableObject : InteractableObject
+public class RollableObject : ToggleableObject
 {
+    public bool canBreakObjects;
     public int hitboxYOffset = -1;
-    // Start is called before the first frame update
-    void Start()
+    public float thrust = 5f;
+    public PlayerController playerController;
+
+    public override bool GetSaveState()
     {
-        
+        return gameObject.activeSelf;
+    }
+
+    public override void LoadFromSavedState(bool savedState)
+    {
+        if (!savedState) {
+            gameObject.SetActive(false);
+        }
     }
 
     public override void Interaction(GameObject player)
@@ -18,39 +30,47 @@ public class PushableObject : InteractableObject
         float verticalDifference = gameObject.transform.position.y - (player.transform.position.y + hitboxYOffset);
 
         //Debug.Log("Horizontal: " + horizontalDifference + ", Vertical: " + verticalDifference);
-        Vector3 moveToPosition;
+        Vector3 direction;
 
         if (math.abs(horizontalDifference) > math.abs(verticalDifference)) {
             if (horizontalDifference < 0) //check for left
             {
-                moveToPosition = new Vector3(gameObject.transform.position.x - 1, gameObject.transform.position.y, 0);
+                direction  = Vector3.left;
+
             } else { //check for right
-                moveToPosition = new Vector3(gameObject.transform.position.x + 1, gameObject.transform.position.y, 0);
+                direction = Vector3.right;
+
             }
         } else {
             if (verticalDifference < 0) //check for top
             {
-                moveToPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1, 0);
+                direction = Vector3.down;
+
             }
             //check for bottom
             else
             {
-                moveToPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, 0);
+                direction = Vector3.up;
             }
         }
 
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation; //unlock x and y
-        gameObject.GetComponent<Rigidbody2D>().MovePosition(moveToPosition); //move (taking physics into accound)
-        StartCoroutine(ReapplyConstraintsAfterDelay());
+        gameObject.GetComponent<Rigidbody2D>().velocity = direction * thrust;
+
+        //take away player's movement
+
+        StartCoroutine(RollUntilHit());
+
     }
 
-    private IEnumerator ReapplyConstraintsAfterDelay()
+    private IEnumerator RollUntilHit()
     {
-        // Wait for the next fixed frame (where physics calculations are done)
-        yield return new WaitForFixedUpdate();
-
-        // Reapply the constraints
-        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; //relock x and y
+        while (math.abs(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude) > 0.1f) {
+            yield return new WaitForFixedUpdate();
+        }
+        gameObject.SetActive(false);
+        //playerController.SetCanMove(true);
+        
     }
 
     
@@ -67,5 +87,4 @@ public class PushableObject : InteractableObject
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         }
     }
-    
 }

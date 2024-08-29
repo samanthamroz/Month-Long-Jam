@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class RotatingPushableObject : InteractableObject
+public class RotatingPushableObject : TransformableObject
 {
     public Collider2D clockwiseCollider1, clockwiseCollider2, counterClockwiseCollider1, counterClockwiseCollider2;
 
