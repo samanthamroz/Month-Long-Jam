@@ -18,11 +18,12 @@ public sealed class SaveProfile<T> where T : SaveProfileData {
 public abstract record SaveProfileData { }
 
 public record PlayerSaveData : SaveProfileData {
-    public Vector3 position;
+    public Vector3 player;
 }
 
 public record SceneSaveData : SaveProfileData {
     public Scene scene;
+    public List<Vector3> playerSpawnPositions;
     public List<Vector3> objectPositions;
     public List<Quaternion> objectRotations;
     public List<bool> objectStates;

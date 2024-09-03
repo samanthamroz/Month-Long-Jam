@@ -22,7 +22,7 @@ public static class SaveManager {
 
     public static SaveProfile<T> Load<T>(string profileName) where T : SaveProfileData {
         if (!File.Exists($"{saveFolder}/{profileName}")) {
-            throw new System.Exception($"Save profile {profileName} not found");
+            throw new Exception($"Save profile {profileName} not found");
         }
 
         var fileContents = File.ReadAllText($"{saveFolder}/{profileName}");
@@ -33,7 +33,7 @@ public static class SaveManager {
 
     public static void Delete(string profileName) {
         if (!File.Exists($"{saveFolder}/{profileName}")) {
-            throw new System.Exception($"Save profile {profileName} not found");
+            throw new Exception($"Save profile {profileName} not found");
         }
 
         Debug.Log($"Successfully deleted {saveFolder}/{profileName}");
