@@ -169,7 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ad751e989ec0149b1a2c2232c2a029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpawnpoint: {x: 0, y: 0, z: 0}
 --- !u!61 &42723979
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -736,7 +735,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.75
+  orthographic size: 6.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -774,15 +773,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetsPPU: 33
+  m_AssetsPPU: 32
   m_RefResolutionX: 640
   m_RefResolutionY: 360
-  m_UpscaleRT: 0
+  m_UpscaleRT: 1
   m_PixelSnapping: 0
   m_CropFrameX: 0
   m_CropFrameY: 0
@@ -14124,6 +14123,10 @@ PrefabInstance:
     - target: {fileID: 4333543485935082318, guid: 07f1534343069ce45a9d7cfed6e088aa, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382039796499429027, guid: 07f1534343069ce45a9d7cfed6e088aa, type: 3}
+      propertyPath: characterDrag
+      value: 0.0001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
