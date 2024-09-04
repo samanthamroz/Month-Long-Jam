@@ -24,16 +24,13 @@ public class PlayerController : MonoBehaviour
             LeanTween.cancelAll();
 
             //move character
-            //gameObject.GetComponent<Rigidbody2D>().MovePosition(gameObject.transform.position + (new Vector3(movementInput.x, movementInput.y, 0) * movementSpeed * Time.deltaTime));
-
-            LeanTween.value(gameObject, moveCharacter, gameObject.transform.position, gameObject.transform.position + (new Vector3(movementInput.x, movementInput.y, 0) * movementSpeed * Time.deltaTime), characterDrag);
-
-
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(movementInput.x, movementInput.y) * movementSpeed;
+            
             //move camera
             LeanTween.moveLocal(cam.gameObject, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -10), cameraDrag).setEaseInBounce().setEaseOutSine();
+        } else {
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
-        
-        
     }
 
     void moveCharacter(Vector3 input) {

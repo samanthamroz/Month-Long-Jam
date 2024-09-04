@@ -14124,9 +14124,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5382039796499429027, guid: 07f1534343069ce45a9d7cfed6e088aa, type: 3}
-      propertyPath: characterDrag
-      value: 0.0001
+    - target: {fileID: 4368140283364166464, guid: 07f1534343069ce45a9d7cfed6e088aa, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368140283364166464, guid: 07f1534343069ce45a9d7cfed6e088aa, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
