@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
+    public float spawnTime;
     public GameObject prefab;
-    GameObject clone;
+    public PlayerController playerController;
+    private GameObject clone;
     
     // Start is called before the first frame update
     void Start()
     {
-        clone = Instantiate(prefab, gameObject.transform.position, gameObject.transform.rotation);
+        SpawnBoulder();
     }
 
     // Update is called once per frame
@@ -18,7 +20,17 @@ public class ObjectSpawner : MonoBehaviour
     {
         if (clone.activeSelf == false)
         {
-            clone = Instantiate(prefab, gameObject.transform.position, gameObject.transform.rotation);
+            SpawnBoulder();
         }
+    }
+
+    private void SpawnBoulder() {
+        clone = Instantiate(prefab, gameObject.transform.position, gameObject.transform.rotation);
+        clone.GetComponent<RollableObject>().playerController = this.playerController;
+
+        Vector3 originalScale = clone.transform.GetChild(0).localScale;
+        clone.transform.GetChild(0).localScale = new Vector3(originalScale.x + .5f, originalScale.y + .5f, originalScale.z + .5f);
+        LeanTween.scale(clone.transform.GetChild(0).gameObject, originalScale, spawnTime);
+        //StartCoroutine(playerController.DoCutscene(spawnTime));
     }
 }

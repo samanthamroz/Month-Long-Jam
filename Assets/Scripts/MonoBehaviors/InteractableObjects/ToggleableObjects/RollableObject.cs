@@ -70,12 +70,12 @@ public class RollableObject : ToggleableObject
 
     private IEnumerator RollUntilHit()
     {
+        playerController.StartCutscene();
         while (math.abs(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude) > 0.01f) {
             yield return new WaitForFixedUpdate();
         }
         gameObject.SetActive(false);
-        //playerController.SetCanMove(true);
-        
+        playerController.EndCutscene();
     }
 
     

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 //test
@@ -11,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     public float cameraDrag;
     public float characterDrag;
-    private bool canMove = true; //used to momentarily stop movement during minor events
 
     void Awake()
     {
@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (canMove && movementInput != Vector2.zero) {
-            LeanTween.cancelAll();
+        if (movementInput != Vector2.zero) {
+            LeanTween.cancel(cam.gameObject);
 
             //move character
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(movementInput.x, movementInput.y) * movementSpeed;
@@ -65,8 +65,18 @@ public class PlayerController : MonoBehaviour
         uic.SetInteractPopupActive(false);
     }
 
-    public void SetCanMove(bool value)
+    public IEnumerator DoCutscene(float cutsceneTime)
     {
-        canMove = value;
+        StartCutscene();
+        yield return new WaitForSeconds(cutsceneTime);
+        EndCutscene();
+    }
+
+    public void StartCutscene() {
+        GetComponent<PlayerInput>().SwitchCurrentActionMap("Cutscene");
+    }
+
+    public void EndCutscene() {
+        GetComponent<PlayerInput>().SwitchCurrentActionMap("Ground");
     }
 }
