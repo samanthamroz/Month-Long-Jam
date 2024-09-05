@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 //test
 public class PlayerController : MonoBehaviour
 {
+    private UIController uic;
     private Camera cam;
     private InteractableObject currentInteraction;
     private Vector2 movementInput;
@@ -12,10 +13,10 @@ public class PlayerController : MonoBehaviour
     public float characterDrag;
     private bool canMove = true; //used to momentarily stop movement during minor events
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         cam = Camera.main;
+        uic = gameObject.GetComponent<UIController>();
     }
 
     void FixedUpdate()
@@ -52,18 +53,20 @@ public class PlayerController : MonoBehaviour
     {
         try {
             currentInteraction = other.gameObject.GetComponent<InteractableObject>();
+            uic.SetInteractPopupActive(true, currentInteraction.HoverText());
         } catch (Exception) {
             currentInteraction = null;
+            uic.SetInteractPopupActive(false);
         }
     }
 
     void OnTriggerExit2D(Collider2D other) {
         currentInteraction = null;
+        uic.SetInteractPopupActive(false);
     }
 
     public void SetCanMove(bool value)
     {
         canMove = value;
     }
-
 }
