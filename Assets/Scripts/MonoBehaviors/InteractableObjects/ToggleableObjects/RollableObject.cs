@@ -24,6 +24,11 @@ public class RollableObject : ToggleableObject
         }
     }
 
+    public override string HoverText()
+    {
+        return "Push";
+    }
+
     public override void Interaction(GameObject player)
     {
         float horizontalDifference = gameObject.transform.position.x - player.transform.position.x;
@@ -87,4 +92,6 @@ public class RollableObject : ToggleableObject
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         }
     }
+
+    
 }

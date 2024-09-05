@@ -5,4 +5,6 @@ using UnityEngine;
 public abstract class InteractableObject : MonoBehaviour
 {
     public abstract void Interaction(GameObject player);
+
+    public abstract string HoverText();
 }

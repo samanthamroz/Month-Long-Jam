@@ -6,10 +6,10 @@ using UnityEngine;
 public class PushableObject : TransformableObject
 {
     public int hitboxYOffset = -1;
-    // Start is called before the first frame update
-    void Start()
+
+    public override string HoverText()
     {
-        
+        return "Push";
     }
 
     public override void Interaction(GameObject player)

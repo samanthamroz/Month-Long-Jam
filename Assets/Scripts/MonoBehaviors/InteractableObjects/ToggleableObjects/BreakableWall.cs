@@ -18,9 +18,13 @@ public class BreakableWall : ToggleableObject
         gameObject.SetActive(false);
     }
 
+    public override string HoverText()
+    {
+        return "Break";
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("coll");
         if (other.gameObject.tag == "Breaker") {
             gameObject.SetActive(false);
         }

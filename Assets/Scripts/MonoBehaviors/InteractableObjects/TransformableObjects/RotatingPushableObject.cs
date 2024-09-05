@@ -7,6 +7,11 @@ public class RotatingPushableObject : TransformableObject
 {
     public Collider2D clockwiseCollider1, clockwiseCollider2, counterClockwiseCollider1, counterClockwiseCollider2;
 
+    public override string HoverText()
+    {
+        return "Rotate";
+    }
+
     public override void Interaction(GameObject player) {
         Collider2D playerCollider = player.GetComponent<Collider2D>();
         Rigidbody2D rb2D = gameObject.GetComponent<Rigidbody2D>();
