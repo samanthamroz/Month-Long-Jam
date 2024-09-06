@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 //test
 public class PlayerController : MonoBehaviour
 {
@@ -43,9 +44,28 @@ public class PlayerController : MonoBehaviour
         movementInput = value.Get<Vector2>();
     }
 
-    private void OnInteract() {
-        if (currentInteraction != null) {
+    private void OnInteract(InputValue value) {
+        float isHeld = value.Get<float>();
+        if (isHeld == 1f && currentInteraction != null) {
+            //button was just pressed
             currentInteraction.Interaction(gameObject);
+        } else if (isHeld == 0f && currentInteraction != null) {
+            //button was just unpressed
+            currentInteraction.EndInteraction(gameObject);
+        }
+    }
+
+    private void OnInteractHold(InputValue value) {
+        float isHeld = value.Get<float>();
+        if (isHeld == 1f && currentInteraction != null) {
+            //button was just pressed
+            try {
+                PushableObject cast = (PushableObject)currentInteraction;
+                cast.HoldInteraction(gameObject);
+            } catch { }
+        } else if (isHeld == 0f && currentInteraction != null) {
+            //button was just unpressed
+            currentInteraction.EndInteraction(gameObject);
         }
     }
 

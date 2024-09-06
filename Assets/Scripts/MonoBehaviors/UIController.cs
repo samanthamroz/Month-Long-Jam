@@ -17,4 +17,8 @@ public class UIController : MonoBehaviour
         popup.SetActive(isActive);
         popup.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = text;
     }
+
+    public void UpdateInteractPopupText(string text = "null") {
+        canvasRef.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = text;
+    }
 }

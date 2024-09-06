@@ -5,43 +5,48 @@ using UnityEngine;
 
 public class PushableObject : TransformableObject
 {
-    public int hitboxYOffset = -1;
+    public float hitboxYOffset = -1f;
+    private string hoverText = "Grab";
 
     public override string HoverText()
     {
-        return "Push";
+        return hoverText;
     }
 
     public override void Interaction(GameObject player)
     {
-        float horizontalDifference = gameObject.transform.position.x - player.transform.position.x;
-        float verticalDifference = gameObject.transform.position.y - (player.transform.position.y + hitboxYOffset);
+        hoverText = "Push";
+        player.GetComponent<UIController>().UpdateInteractPopupText(hoverText);
+    }
 
-        //Debug.Log("Horizontal: " + horizontalDifference + ", Vertical: " + verticalDifference);
-        Vector3 moveToPosition;
+    public override void EndInteraction(GameObject player) {
+        isHolding = false;
+        hoverText = "Grab";
+        player.GetComponent<UIController>().UpdateInteractPopupText(hoverText);
+    }
 
-        if (math.abs(horizontalDifference) > math.abs(verticalDifference)) {
-            if (horizontalDifference < 0) //check for left
-            {
-                moveToPosition = new Vector3(gameObject.transform.position.x - 1, gameObject.transform.position.y, 0);
-            } else { //check for right
-                moveToPosition = new Vector3(gameObject.transform.position.x + 1, gameObject.transform.position.y, 0);
-            }
-        } else {
-            if (verticalDifference < 0) //check for top
-            {
-                moveToPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1, 0);
-            }
-            //check for bottom
-            else
-            {
-                moveToPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, 0);
-            }
+    public override void HoldInteraction(GameObject player) {
+        isHolding = true;
+        this.player = player;
+        horizontalDifference = gameObject.transform.position.x - player.transform.position.x;
+        verticalDifference = gameObject.transform.position.y - (player.transform.position.y + hitboxYOffset);
+    }
+
+    GameObject player;
+    bool isHolding = false;
+    float horizontalDifference, verticalDifference;
+    void FixedUpdate()
+    {
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; //relock x and y
+        if (isHolding) {
+            Vector3 moveToPosition = new Vector3(
+                player.transform.position.x + horizontalDifference, 
+                player.transform.position.y + verticalDifference,
+                0);
+
+            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation; //unlock x and y
+            gameObject.GetComponent<Rigidbody2D>().MovePosition(moveToPosition); //move (taking physics into accound)
         }
-
-        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation; //unlock x and y
-        gameObject.GetComponent<Rigidbody2D>().MovePosition(moveToPosition); //move (taking physics into accound)
-        StartCoroutine(ReapplyConstraintsAfterDelay());
     }
 
     private IEnumerator ReapplyConstraintsAfterDelay()
