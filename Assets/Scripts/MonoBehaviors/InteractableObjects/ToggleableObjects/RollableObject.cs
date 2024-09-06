@@ -71,7 +71,7 @@ public class RollableObject : ToggleableObject
     private IEnumerator RollUntilHit()
     {
         playerController.StartCutscene();
-        while (math.abs(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude) > 0.01f) {
+        while (math.abs(gameObject.GetComponent<Rigidbody2D>().velocity.magnitude) > 0.05f) {
             yield return new WaitForFixedUpdate();
         }
         gameObject.SetActive(false);
@@ -92,6 +92,4 @@ public class RollableObject : ToggleableObject
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         }
     }
-
-    
 }
