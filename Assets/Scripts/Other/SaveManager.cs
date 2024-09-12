@@ -39,4 +39,16 @@ public static class SaveManager {
         //Debug.Log($"Successfully deleted {saveFolder}/{profileName}");
         File.Delete($"{saveFolder}/{profileName}");
     }
+
+    public static bool GameDataExists() {
+        return File.Exists($"{saveFolder}");
+    }
+
+    public static void DeleteAll() {
+        if (!File.Exists($"{saveFolder}")) {
+            throw new Exception($"GameData folder not found");
+        }
+
+        File.Delete($"{saveFolder}");
+    }
 }

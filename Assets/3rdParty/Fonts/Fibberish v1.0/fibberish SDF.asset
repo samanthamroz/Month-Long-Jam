@@ -59,7 +59,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - UNDERLAY_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -123,7 +124,7 @@ Material:
     - _Reflectivity: 10
     - _ScaleRatioA: 0.9
     - _ScaleRatioB: 0.73125
-    - _ScaleRatioC: 0.73125
+    - _ScaleRatioC: 0.3728965
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -136,10 +137,10 @@ Material:
     - _StencilWriteMask: 255
     - _TextureHeight: 1024
     - _TextureWidth: 1024
-    - _UnderlayDilate: 0
-    - _UnderlayOffsetX: 0
-    - _UnderlayOffsetY: 0
-    - _UnderlaySoftness: 0
+    - _UnderlayDilate: 0.17
+    - _UnderlayOffsetX: 0.433
+    - _UnderlayOffsetY: -0.791
+    - _UnderlaySoftness: 1
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
     - _WeightBold: 0.75
@@ -154,7 +155,7 @@ Material:
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &11400000
 MonoBehaviour:
@@ -736,6 +737,66 @@ MonoBehaviour:
   - m_X: 317
     m_Y: 70
     m_Width: 22
+    m_Height: 36
+  - m_X: 371
+    m_Y: 106
+    m_Width: 22
+    m_Height: 917
+  - m_X: 371
+    m_Y: 140
+    m_Width: 652
+    m_Height: 883
+  - m_X: 300
+    m_Y: 182
+    m_Width: 723
+    m_Height: 841
+  - m_X: 300
+    m_Y: 123
+    m_Width: 17
+    m_Height: 900
+  - m_X: 252
+    m_Y: 211
+    m_Width: 771
+    m_Height: 812
+  - m_X: 252
+    m_Y: 187
+    m_Width: 11
+    m_Height: 836
+  - m_X: 0
+    m_Y: 348
+    m_Width: 1023
+    m_Height: 675
+  - m_X: 113
+    m_Y: 199
+    m_Width: 54
+    m_Height: 58
+  - m_X: 172
+    m_Y: 263
+    m_Width: 851
+    m_Height: 760
+  - m_X: 172
+    m_Y: 257
+    m_Width: 43
+    m_Height: 766
+  - m_X: 37
+    m_Y: 260
+    m_Width: 17
+    m_Height: 20
+  - m_X: 37
+    m_Y: 333
+    m_Width: 986
+    m_Height: 690
+  - m_X: 102
+    m_Y: 327
+    m_Width: 921
+    m_Height: 696
+  - m_X: 102
+    m_Y: 280
+    m_Width: 11
+    m_Height: 743
+  - m_X: 566
+    m_Y: 70
+    m_Width: 54
     m_Height: 953
   - m_X: 167
     m_Y: 76
