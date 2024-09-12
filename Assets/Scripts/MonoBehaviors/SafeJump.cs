@@ -7,6 +7,8 @@ public class SafeJump : MonoBehaviour
     //this script should allow the player to, when on water trigger, be sent outside of trigger area. ive been avoiding using a method i've seen, which is
     //predetermined safe points, because i think i'd have to create More empty objects surrounding the water to do that and that sounds only a little annoying? 
     //i mean we could maybe make a ground tag to fix that issue? i dont know i need to go to bed so i'll work that out later. if you're seeing this comment then hi
+
+    //hi lol -Sam
     
     public float offset = 1.0f;
 
