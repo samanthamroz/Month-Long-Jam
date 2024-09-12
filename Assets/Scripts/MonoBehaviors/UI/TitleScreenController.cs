@@ -23,7 +23,7 @@ public class TitleScreenController : MonoBehaviour
     }
 
     public void Continue() {
-        var saveData = SaveManager.Load<PlayerSaveData>("global").saveData;
+        var saveData = SaveManager.Load<PlayerSaveData>().saveData;
         SceneManager.LoadScene(saveData.lastScene);
     }
 

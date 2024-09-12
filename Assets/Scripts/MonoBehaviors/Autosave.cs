@@ -24,7 +24,7 @@ public class Autosave : MonoBehaviour
         }
     }
 
-    private void SaveRoom() {
+    public void SaveRoom() {
         //create blank sceneSave
         var sceneSave = new SceneSaveData {
             scene = SceneManager.GetActiveScene(),
@@ -43,11 +43,11 @@ public class Autosave : MonoBehaviour
         }
 
         //save to file
-        var saveProfile  = new SaveProfile<SceneSaveData>(sceneSave.scene.name, sceneSave);
+        var saveProfile  = new SaveProfile<SceneSaveData>(sceneSave, sceneSave.scene.name);
         SaveManager.Save(saveProfile);
     }
 
-    private void LoadRoom() {
+    public void LoadRoom() {
         var saveData = SaveManager.Load<SceneSaveData>(SceneManager.GetActiveScene().name).saveData;
         
         TransformableObject[] tObjects = (TransformableObject[])FindObjectsOfType(typeof(TransformableObject));

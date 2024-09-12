@@ -9,7 +9,7 @@ public sealed class SaveProfile<T> where T : SaveProfileData {
 
     private SaveProfile() { }
 
-    public SaveProfile(string name, T saveData) {
+    public SaveProfile(T saveData, string name = "global") {
         this.name = name;
         this.saveData = saveData;
     }
@@ -17,9 +17,11 @@ public sealed class SaveProfile<T> where T : SaveProfileData {
 
 public abstract record SaveProfileData { }
 
-public record PlayerSaveData : SaveProfileData {
+public record PlayerSaveData : SaveProfileData { 
     public string lastScene;
     public Vector3 player;
+    public List<Tool> itemsCollected;
+    public List<Ingredient> ingredientsCollected; 
 }
 
 public record SceneSaveData : SaveProfileData {

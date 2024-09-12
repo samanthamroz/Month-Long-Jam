@@ -17,15 +17,27 @@ public static class SaveManager {
         if (!Directory.Exists(saveFolder)) {
             Directory.CreateDirectory(saveFolder); //creates /GameData directory
         }
+
         File.WriteAllText($"{saveFolder}/{save.name}", jsonString);
     }
 
-    public static SaveProfile<T> Load<T>(string profileName) where T : SaveProfileData {
+    public static SaveProfile<T> Load<T>(string profileName) where T : SceneSaveData {
         if (!File.Exists($"{saveFolder}/{profileName}")) {
             throw new Exception($"Save profile {profileName} not found");
         }
 
         var fileContents = File.ReadAllText($"{saveFolder}/{profileName}");
+        //Debug.Log($"Successfully loaded {saveFolder}/{profileName}");
+
+        return JsonConvert.DeserializeObject<SaveProfile<T>>(fileContents);
+    }
+
+    public static SaveProfile<T> Load<T>() where T : PlayerSaveData {
+        if (!File.Exists($"{saveFolder}/global")) {
+            throw new Exception($"Save profile not found");
+        }
+
+        var fileContents = File.ReadAllText($"{saveFolder}/global");
         //Debug.Log($"Successfully loaded {saveFolder}/{profileName}");
 
         return JsonConvert.DeserializeObject<SaveProfile<T>>(fileContents);
@@ -50,5 +62,7 @@ public static class SaveManager {
         }
 
         File.Delete($"{saveFolder}");
+
+        Save(new SaveProfile<PlayerSaveData>(new PlayerSaveData()));
     }
 }
