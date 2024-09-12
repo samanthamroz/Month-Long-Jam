@@ -14,15 +14,6 @@ public class SafeJump : MonoBehaviour
     {
         if (collision.CompareTag("Water")) 
         {
-            /*
-            bool safelyTeleported = false
-            while (!safelyTeleported) {
-                try {
-                    Teleport() //this will try a teleport and throw an error if it doesn't work (i.e., if there are still contact points on the water)
-                    safelyTeleported = true
-                } catch {}
-            }
-            */
             TeleportOutsideTrigger(collision);
         }
     }
