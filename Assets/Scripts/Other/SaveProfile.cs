@@ -18,6 +18,7 @@ public sealed class SaveProfile<T> where T : SaveProfileData {
 public abstract record SaveProfileData { }
 
 public record PlayerSaveData : SaveProfileData {
+    public string lastScene;
     public Vector3 player;
 }
 

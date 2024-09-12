@@ -10,13 +10,16 @@ public class PlayerController : MonoBehaviour
     private Camera cam;
     private InteractableObject currentInteraction;
     private Vector2 movementInput;
+    public GameObject cameraPrefab;
     public float movementSpeed;
     public float cameraDrag;
     public float characterDrag;
 
     void Awake()
     {
+        Instantiate(cameraPrefab).GetComponent<Camera>().enabled = true;
         cam = Camera.main;
+        cam.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -10);
         uic = gameObject.GetComponent<UIController>();
     }
 

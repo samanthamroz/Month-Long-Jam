@@ -4,16 +4,16 @@ using UnityEngine.SceneManagement;
 
 public class Door : InteractableObject
 {
-    [SerializeField] SceneAsset sceneAsset;
+    [SerializeField] string sceneToLoad;
     public override string HoverText()
     {
         return "Open";
     }
     
     public override void Interaction(GameObject player) {
-        if (sceneAsset != null)
+        if (sceneToLoad != null)
         {
-            SceneManager.LoadScene(sceneAsset.name);
+            SceneManager.LoadScene(sceneToLoad);
         }
     }
 }
