@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7ffb78251b374654fb25b60c4bd19bfe
+guid: f27d5fa435a30884485d5aaf9bfd53b9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: door-foreward-Sheet_0
+      name: 0wall (1)_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 16
         y: 0
-        width: 32
-        height: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e592c3ed86ae7b54bb433679618f3550
-      internalID: -219145697
+      spriteID: 2fba357579a545a46b7c3fe6ab5026a6
+      internalID: -1750647303
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door-foreward-Sheet_1
+      name: 0wall (1)_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 32
-        height: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e94b4bdc0f7d8cd43b9c7ce68422ae47
-      internalID: -1979183711
+      spriteID: 8ee1e32dfefd3c34f848f2de05d8efca
+      internalID: -861578956
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door-foreward-Sheet_2
+      name: 0wall (1)_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9265fc694c1318c419904fdc50476f2a
+      internalID: -346491239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0wall (1)_3
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
-        height: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +187,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8578eddd6c76924892aaccd7318f494
-      internalID: -1046210616
+      spriteID: f3d7335b49488e34fa30b87ae94bc23d
+      internalID: 801800538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door-foreward-Sheet_3
+      name: 0wall (1)_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1422431c0c75dbb438c722e8ec16e56d
+      internalID: -670017172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0wall (1)_5
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
-        height: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +229,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5be8e30a11df55e4098de4887ad79c84
-      internalID: -1347385769
+      spriteID: b7f0b189dbe83a242bb5e4015edd2ad8
+      internalID: -1296719763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door-foreward-Sheet_4
+      name: 0wall (1)_6
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5227c6a74b7c4854ba00dc23cdf8ced4
+      internalID: 303834734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0wall (1)_7
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 32
-        height: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +271,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfc24655520fe9745af046e6545ad794
-      internalID: 905116944
+      spriteID: 022d6f5a679f9b94aa549b0748380729
+      internalID: -504336288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door-foreward-Sheet_5
+      name: 0wall (1)_8
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 0
-        width: 32
-        height: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,8 +292,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a21b710bb089cde4d97bd38ccb2ce538
-      internalID: -996074284
+      spriteID: 54cddaca429d35e4cb4b54a273808dd5
+      internalID: -1984643698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0wall (1)_9
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d74f9deb84b798b48a1d1eef7034a5ad
+      internalID: 356320118
       vertices: []
       indices: 
       edges: []
@@ -246,12 +330,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      door-foreward-Sheet_0: -219145697
-      door-foreward-Sheet_1: -1979183711
-      door-foreward-Sheet_2: -1046210616
-      door-foreward-Sheet_3: -1347385769
-      door-foreward-Sheet_4: 905116944
-      door-foreward-Sheet_5: -996074284
+      0wall (1)_0: -1750647303
+      0wall (1)_1: -861578956
+      0wall (1)_2: -346491239
+      0wall (1)_3: 801800538
+      0wall (1)_4: -670017172
+      0wall (1)_5: -1296719763
+      0wall (1)_6: 303834734
+      0wall (1)_7: -504336288
+      0wall (1)_8: -1984643698
+      0wall (1)_9: 356320118
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

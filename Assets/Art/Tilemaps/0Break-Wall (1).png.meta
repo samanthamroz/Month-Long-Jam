@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3348617ad44ba3b4cbb1c8e8694096ea
+guid: 19f3d23eef1e9564f8cf730b52492ccb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Door-Side-Sheet_0
+      name: 0Break-Wall (1)_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 16
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,62 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e11a1a34b5e318488baf94b0dfc079d
-      internalID: -1318896747
+      spriteID: 0cf383cbeeb170040b218878dd71fcf5
+      internalID: 1186562931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door-Side-Sheet_1
+      name: 0Break-Wall (1)_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58746dd6181550e4d83f1b00f465fedf
+      internalID: 29628198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0Break-Wall (1)_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31db19943c5ab2740be89e0c0072b92f
+      internalID: -970636668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0Break-Wall (1)_3
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +187,83 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5af7808666f417c46a762ec2029fee26
-      internalID: 85837945
+      spriteID: 2a9160442f74dba42bd101128e961de8
+      internalID: 91054906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door-Side-Sheet_2
+      name: 0Break-Wall (1)_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eaef18e12df66141989cd3d600b7caf
+      internalID: 1198092530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0Break-Wall (1)_5
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca3fbd9ff526b3c4f9405f8850afd9ab
+      internalID: -2065176387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0Break-Wall (1)_6
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d05a1adf7f4429344ad6331678717ce0
+      internalID: 778543613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0Break-Wall (1)_7
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +271,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b5218c26833af84ea93dbc53e747b1e
-      internalID: 1957076457
+      spriteID: 88347c207df57614f81eb0d854a3f755
+      internalID: -800831159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door-Side-Sheet_3
+      name: 0Break-Wall (1)_8
       rect:
         serializedVersion: 2
-        x: 192
+        x: 144
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,29 +292,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2981e6cae81e57f41a92f1e7f1fe19b8
-      internalID: -1556535250
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door-Side-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3af6cea0fb6afb440ac362ea9775ec9e
-      internalID: -1777159391
+      spriteID: f9ea3b08b84a2d149906c5d2aab66dd3
+      internalID: -1626126073
       vertices: []
       indices: 
       edges: []
@@ -225,11 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Door-Side-Sheet_0: -1318896747
-      Door-Side-Sheet_1: 85837945
-      Door-Side-Sheet_2: 1957076457
-      Door-Side-Sheet_3: -1556535250
-      Door-Side-Sheet_4: -1777159391
+      0Break-Wall (1)_0: 1186562931
+      0Break-Wall (1)_1: 29628198
+      0Break-Wall (1)_2: -970636668
+      0Break-Wall (1)_3: 91054906
+      0Break-Wall (1)_4: 1198092530
+      0Break-Wall (1)_5: -2065176387
+      0Break-Wall (1)_6: 778543613
+      0Break-Wall (1)_7: -800831159
+      0Break-Wall (1)_8: -1626126073
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
