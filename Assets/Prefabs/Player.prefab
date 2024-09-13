@@ -275,6 +275,9 @@ MonoBehaviour:
   movementSpeed: 10
   cameraDrag: 0.2
   characterDrag: 0.01
+  jumpDistance: 2
+  jumpHeight: 0.2
+  jumpAnimationTime: 0.25
 --- !u!114 &3684287244262418754
 MonoBehaviour:
   m_ObjectHideFlags: 0

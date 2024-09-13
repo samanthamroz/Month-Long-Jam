@@ -14,7 +14,9 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     public float cameraDrag;
     public float characterDrag;
-
+    public float jumpDistance;
+    public float jumpHeight;
+    public float jumpAnimationTime;
     void Awake()
     {
         Instantiate(cameraPrefab).GetComponent<Camera>().enabled = true;
@@ -80,6 +82,20 @@ public class PlayerController : MonoBehaviour
         } catch (Exception) {
             currentInteraction = null;
             uic.SetInteractPopupActive(false);
+        }
+
+        if (other.CompareTag("Water")) 
+        {
+            Vector2 reverseDirection = new Vector2(-gameObject.GetComponent<Rigidbody2D>().velocity.x, -gameObject.GetComponent<Rigidbody2D>().velocity.y);
+            
+            Vector3 targetPosition = new Vector3(gameObject.transform.position.x + jumpDistance * Math.Sign(reverseDirection.x),
+                gameObject.transform.position.y + jumpDistance * Math.Sign(reverseDirection.y),
+                gameObject.transform.position.z);
+            
+            LeanTween.moveLocal(gameObject, targetPosition, jumpAnimationTime).setEaseOutExpo();
+            /*LeanTween.scale(gameObject, 
+                new Vector3(transform.localScale.x + jumpHeight, transform.localScale.y + jumpHeight, transform.localScale.z + jumpHeight),
+                jumpAnimationTime).setLoopPingPong().setLoopCount(2);*/
         }
     }
 
