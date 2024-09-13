@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,6 +113,27 @@ TextureImporter:
       name: Torch_0
       rect:
         serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5413fef874500de40af2aa76b8e79292
+      internalID: 622897117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Torch_1
+      rect:
+        serializedVersion: 2
         x: 16
         y: 0
         width: 16
@@ -124,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa4572e5266c66e488dd705c3e8f8e89
-      internalID: -1770829237
+      spriteID: 82619bd669bb1744e97255e8bc6fcd23
+      internalID: -1907859341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Torch_1
+      name: Torch_2
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30efa1650cc5077488197e122da3d9a8
-      internalID: -137293371
+      spriteID: 84bf95b6fd2ed614f9486e8fa0e64500
+      internalID: -2141748978
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Torch_2
+      name: Torch_3
       rect:
         serializedVersion: 2
         x: 48
@@ -166,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5507ad8d83f1104899d8f5a8e36d858
-      internalID: -1899212126
+      spriteID: 8ab9145d779e2234fa0c67874c8d9bfa
+      internalID: -678402328
       vertices: []
       indices: 
       edges: []
@@ -183,9 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Torch_0: -1770829237
-      Torch_1: -137293371
-      Torch_2: -1899212126
+      Torch_0: 622897117
+      Torch_1: -1907859341
+      Torch_2: -2141748978
+      Torch_3: -678402328
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
