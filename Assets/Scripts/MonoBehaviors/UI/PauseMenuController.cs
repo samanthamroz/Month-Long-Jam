@@ -7,7 +7,6 @@ using UnityEditor;
 
 public class PauseMenuController : MonoBehaviour
 {
-    public GameObject saveQuitButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +20,7 @@ public class PauseMenuController : MonoBehaviour
     }
 
     public void SaveQuit() {
+        Autosave.SaveRoom();
         Debug.Log(message: "This button is being pressed!");
         Application.Quit();
     }
