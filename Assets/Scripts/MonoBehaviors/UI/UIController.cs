@@ -21,4 +21,10 @@ public class UIController : MonoBehaviour
     public void UpdateInteractPopupText(string text = "null") {
         canvasRef.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = text;
     }
+
+    public void SetPauseMenuActive(bool isActive)
+    {
+        GameObject pause = canvasRef.transform.GetChild(1).gameObject;
+        pause.SetActive(isActive);
+    }
 }

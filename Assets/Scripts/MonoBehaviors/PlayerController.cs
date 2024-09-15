@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float jumpDistance;
     public float jumpHeight;
     public float jumpAnimationTime;
+    private bool menuActive = false;
     void Awake()
     {
         Instantiate(cameraPrefab).GetComponent<Camera>().enabled = true;
@@ -72,6 +73,22 @@ public class PlayerController : MonoBehaviour
             //button was just unpressed
             currentInteraction.EndInteraction(gameObject);
         }
+    }
+
+    private void OnEscape(InputValue value) {
+        float isPressed = value.Get<float>();
+        if (isPressed == 1f && uic != null) {
+            //button was just pressed
+            menuActive = !menuActive;
+            uic.SetPauseMenuActive(menuActive);
+            if (menuActive == true) {
+                StartCutscene();
+            }
+            else {
+                EndCutscene();
+            }
+        }
+        //next make it stop player movement i think but for now i am gonna work on save and quit functions first then come back
     }
 
     void OnTriggerEnter2D(Collider2D other)
