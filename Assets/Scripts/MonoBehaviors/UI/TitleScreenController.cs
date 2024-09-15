@@ -28,10 +28,6 @@ public class TitleScreenController : MonoBehaviour
     }
 
     public void NewGame() {
-        if (SaveManager.GameDataExists()) {
-            Debug.Log("Overwriting!");
-        }
-
         try {
             SaveManager.DeleteAll();
         } finally {

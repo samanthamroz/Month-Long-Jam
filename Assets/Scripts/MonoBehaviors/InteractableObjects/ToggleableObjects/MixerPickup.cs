@@ -20,7 +20,7 @@ public class MixerPickup : ToggleableObject
 
         gameObject.SetActive(false);
 
-        player.GetComponent<Autosave>().SaveRoom();
+        Autosave.SaveRoom();
     }
 
     public override bool GetSaveState()
