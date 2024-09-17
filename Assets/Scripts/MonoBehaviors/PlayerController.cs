@@ -116,15 +116,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D other)
+    {
+        OnTriggerEnter2D(other);
+    }
+
     void OnTriggerExit2D(Collider2D other) {
         currentInteraction = null;
         uic.SetInteractPopupActive(false);
     }
 
-    public IEnumerator DoCutscene(float cutsceneTime)
+    public IEnumerator DoCutscene(float cutsceneTime, bool disableHitbox = false)
     {
         StartCutscene();
+        if (disableHitbox) {
+            gameObject.GetComponent<Collider2D>().enabled = false;
+        }
         yield return new WaitForSeconds(cutsceneTime);
+        gameObject.GetComponent<Collider2D>().enabled = true;
         EndCutscene();
     }
 
