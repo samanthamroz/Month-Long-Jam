@@ -101,8 +101,9 @@ public class PlayerController : MonoBehaviour
             uic.SetInteractPopupActive(false);
         }
 
-        if (other.CompareTag("Water")) 
-        {
+        if (other.CompareTag("Water") && 
+                    other.bounds.Contains(gameObject.GetComponent<Collider2D>().bounds.min) && 
+                    other.bounds.Contains(gameObject.GetComponent<Collider2D>().bounds.max)) {
             Vector2 reverseDirection = new Vector2(-gameObject.GetComponent<Rigidbody2D>().velocity.x, -gameObject.GetComponent<Rigidbody2D>().velocity.y);
             
             Vector3 targetPosition = new Vector3(gameObject.transform.position.x + jumpDistance * Math.Sign(reverseDirection.x),
@@ -116,14 +117,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        OnTriggerEnter2D(other);
-    }
-
     void OnTriggerExit2D(Collider2D other) {
-        currentInteraction = null;
-        uic.SetInteractPopupActive(false);
+        if (gameObject.GetComponent<Collider2D>().GetContacts(new ContactPoint2D[0]) == 0) {
+            currentInteraction = null;
+            uic.SetInteractPopupActive(false);
+        }
     }
 
     public IEnumerator DoCutscene(float cutsceneTime, bool disableHitbox = false)
