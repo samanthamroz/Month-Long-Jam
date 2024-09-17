@@ -11,9 +11,9 @@ public class HorizontalJumpLeft : InteractableObject
 
     public override void Interaction(GameObject player)
     {
-        StartCoroutine(player.GetComponent<PlayerController>().DoCutscene(jumpTime));
+        StartCoroutine(player.GetComponent<PlayerController>().DoCutscene(jumpTime, true));
         LeanTween.cancel(player);
-        LeanTween.moveLocalX(player, player.transform.position.x + 2, jumpTime);
+        LeanTween.moveLocalX(player, player.transform.position.x + 2.5f, jumpTime);
         LeanTween.scale(player, new Vector3(player.transform.localScale.x + jumpHeight, player.transform.localScale.y + jumpHeight, player.transform.localScale.z), jumpTime).setLoopCount(2).setLoopPingPong().setEaseInOutQuad();
     }
 }
