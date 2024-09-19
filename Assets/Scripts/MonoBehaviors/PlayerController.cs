@@ -18,8 +18,11 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight;
     public float jumpAnimationTime;
     private bool menuActive = false;
+    Animator animator;
+
     void Awake()
     {
+        animator = GetComponent<Animator>();
         Instantiate(cameraPrefab).GetComponent<Camera>().enabled = true;
         cam = Camera.main;
         cam.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -10);
@@ -29,6 +32,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         if (movementInput != Vector2.zero) {
+            animator.SetFloat("moveX", movementInput.x);
+            animator.SetFloat("moveY", movementInput.y);
             LeanTween.cancel(cam.gameObject);
 
             //move character
@@ -39,11 +44,22 @@ public class PlayerController : MonoBehaviour
         } else {
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
+        UpdateAnimation();
     }
 
     void moveCharacter(Vector3 input) {
         Debug.Log(input);
         gameObject.GetComponent<Rigidbody2D>().MovePosition(input);
+    }
+
+    void UpdateAnimation() {
+        if(movementInput != Vector2.zero)
+        {
+            animator.Play("Base Layer.MandyWalk");
+        }
+        else {
+            animator.Play("Base Layer.MandyIdle");
+        }
     }
 
     private void OnMove(InputValue value) {
