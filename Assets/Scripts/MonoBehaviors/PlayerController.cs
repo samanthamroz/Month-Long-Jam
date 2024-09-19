@@ -19,21 +19,21 @@ public class PlayerController : MonoBehaviour
     public float jumpAnimationTime;
     private bool menuActive = false;
     Animator animator;
+    public AudioSource source;
+    public AudioClip footsteps;
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
         Instantiate(cameraPrefab).GetComponent<Camera>().enabled = true;
         cam = Camera.main;
         cam.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -10);
         uic = gameObject.GetComponent<UIController>();
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
         if (movementInput != Vector2.zero) {
-            animator.SetFloat("moveX", movementInput.x);
-            animator.SetFloat("moveY", movementInput.y);
             LeanTween.cancel(cam.gameObject);
 
             //move character
@@ -41,8 +41,20 @@ public class PlayerController : MonoBehaviour
             
             //move camera
             LeanTween.moveLocal(cam.gameObject, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -10), cameraDrag).setEaseInBounce().setEaseOutSine();
+            animator.SetFloat("moveX", movementInput.x);
+            animator.SetFloat("moveY", movementInput.y);
+            if (!source.isPlaying)
+            {
+                source.clip = footsteps;
+                source.Play();
+            }
+            
         } else {
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            if (source.isPlaying)
+            {
+                source.Stop();
+            }
         }
         UpdateAnimation();
     }
