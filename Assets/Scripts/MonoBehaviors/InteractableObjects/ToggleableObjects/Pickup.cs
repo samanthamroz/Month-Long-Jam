@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MixerPickup : ToggleableObject
+public abstract class Pickup : ToggleableObject
 {
     public float hoverDistance, hoverSpeed;
     private float hoverTop, hoverBase;
@@ -10,17 +10,6 @@ public class MixerPickup : ToggleableObject
     public override string HoverText()
     {
         return "Pick Up";
-    }
-
-    public override void Interaction(GameObject player)
-    {
-        var saveData = SaveManager.Load<PlayerSaveData>().saveData;
-        saveData.itemsCollected.Add(Tool.MIXER);
-        SaveManager.Save(new SaveProfile<PlayerSaveData>(saveData));
-
-        gameObject.SetActive(false);
-
-        Autosave.SaveRoom();
     }
 
     public override bool GetSaveState()

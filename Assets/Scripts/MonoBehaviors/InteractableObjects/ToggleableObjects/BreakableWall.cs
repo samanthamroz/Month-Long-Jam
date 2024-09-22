@@ -15,12 +15,20 @@ public class BreakableWall : ToggleableObject
     }
 
     public override void Interaction(GameObject player) {
-        gameObject.SetActive(false);
+        var saveData = SaveManager.Load<PlayerSaveData>().saveData;
+        if (saveData.itemsCollected.Contains(Tool.MIXER)) {
+            gameObject.SetActive(false);
+        }
     }
 
     public override string HoverText()
     {
-        return "Break";
+        var saveData = SaveManager.Load<PlayerSaveData>().saveData;
+        if (saveData.itemsCollected.Contains(Tool.MIXER)) {
+            return "Break";
+        } else {
+            return "Missing Item";
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
