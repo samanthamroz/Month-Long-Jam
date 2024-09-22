@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
                 EndCutscene();
             }
         }
-        //next make it stop player movement i think but for now i am gonna work on save and quit functions first then come back
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
