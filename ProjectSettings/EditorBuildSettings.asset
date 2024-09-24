@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Demo-Sam.unity
     guid: 6dedd919447a4ef44aefb8b6a710e947
+  - enabled: 1
+    path: Assets/Scenes/SpawnAndOvenRoom.unity
+    guid: 998f9009a56c0bf49a6cf950ba5b3e84
   m_configObjects: {}

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Autosave : MonoBehaviour
 {
-    void Start()
+    void Awake()
     {
         LoadRoom();
     }

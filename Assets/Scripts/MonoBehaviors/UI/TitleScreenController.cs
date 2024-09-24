@@ -8,6 +8,7 @@ using UnityEditor;
 public class TitleScreenController : MonoBehaviour
 {
     [SerializeField] private string firstScene;
+    [SerializeField] private Vector3 spawnPositionInNextRoom;
     public GameObject continueButton, newGameButton, settingsButton, quitButton;
 
     void Start()
@@ -15,11 +16,6 @@ public class TitleScreenController : MonoBehaviour
         if (!SaveManager.GameDataExists()) {
             continueButton.GetComponent<Button>().interactable = false;
         }
-    }
-
-    void Update()
-    {
-        
     }
 
     public void Continue() {
@@ -31,6 +27,20 @@ public class TitleScreenController : MonoBehaviour
         try {
             SaveManager.DeleteAll();
         } finally {
+            PlayerSaveData saveData;
+            try {
+                saveData = SaveManager.Load<PlayerSaveData>().saveData;
+                saveData.nextSpawn = spawnPositionInNextRoom;
+            } catch {
+                saveData = new PlayerSaveData {
+                    lastScene = firstScene,
+                    itemsCollected = new List<Tool>(),
+                    ingredientsCollected = new List<Ingredient>(),
+                    nextSpawn = spawnPositionInNextRoom
+                };
+            }
+            SaveManager.Save(new SaveProfile<PlayerSaveData>(saveData));
+
             SceneManager.LoadScene(firstScene);
         }
     }

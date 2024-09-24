@@ -3227,7 +3227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d63a11ee6969e4a8968d486d8a68c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstScene: TutorialRoom0
+  firstScene: SpawnAndOvenRoom
+  spawnPositionInNextRoom: {x: -1, y: 2, z: 0}
   continueButton: {fileID: 432512436}
   newGameButton: {fileID: 309597375}
   settingsButton: {fileID: 96222431}
