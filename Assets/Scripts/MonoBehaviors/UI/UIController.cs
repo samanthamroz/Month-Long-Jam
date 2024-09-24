@@ -1,10 +1,12 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
     public GameObject canvasPrefab;
     private GameObject canvasRef;
+    private PlayerSaveData saveData = SaveManager.Load<PlayerSaveData>().saveData;
 
     void Awake()
     {
@@ -26,5 +28,14 @@ public class UIController : MonoBehaviour
     {
         GameObject pause = canvasRef.transform.GetChild(1).gameObject;
         pause.SetActive(isActive);
+        
+        UpdateItemsList();
+    }
+
+    public void UpdateItemsList() {
+        //Debug.Log(saveData.ingredientsCollected.Contains(Ingredient.BAKINGPOWDER));
+        GameObject mixer = canvasRef.transform.GetChild(1).GetChild(0).gameObject;
+        bool haveMixer = saveData.ingredientsCollected.Contains(Ingredient.BAKINGPOWDER);
+        mixer.SetActive(haveMixer);
     }
 }
