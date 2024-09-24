@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         try {
             var saveData = SaveManager.Load<PlayerSaveData>().saveData;
             gameObject.transform.position = saveData.nextSpawn;
+            cam.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -10);
         } catch { 
             Debug.Log("spawning at default location");
         }

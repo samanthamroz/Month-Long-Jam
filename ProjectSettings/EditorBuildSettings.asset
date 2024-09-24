@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TutorialRoom0.unity
     guid: 5504f7d6467645f40a0fa4dc0cc43a52
+  - enabled: 1
+    path: Assets/Scenes/Demo-Sam.unity
+    guid: 6dedd919447a4ef44aefb8b6a710e947
   m_configObjects: {}
