@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.Controls;
 //test
 public class PlayerController : MonoBehaviour
 {
+    public bool spawnFromSave = true;
     private UIController uic;
     private Camera cam;
     private InteractableObject currentInteraction;
@@ -33,13 +34,15 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        try {
-            var saveData = SaveManager.Load<PlayerSaveData>().saveData;
-            gameObject.transform.position = saveData.nextSpawn;
-            cam.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -10);
-        } catch { 
-            Debug.Log("spawning at default location");
+        if (spawnFromSave) {
+            try {
+                var saveData = SaveManager.Load<PlayerSaveData>().saveData;
+                gameObject.transform.position = saveData.nextSpawn;
+            } catch { 
+                Debug.Log("spawning at default location");
+            }
         }
+        cam.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -10);
     }
 
     void FixedUpdate()
