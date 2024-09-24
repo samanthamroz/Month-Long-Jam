@@ -31,6 +31,16 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    void Start()
+    {
+        try {
+            var saveData = SaveManager.Load<PlayerSaveData>().saveData;
+            gameObject.transform.position = saveData.nextSpawn;
+        } catch { 
+            Debug.Log("spawning at default location");
+        }
+    }
+
     void FixedUpdate()
     {
         if (movementInput != Vector2.zero) {
