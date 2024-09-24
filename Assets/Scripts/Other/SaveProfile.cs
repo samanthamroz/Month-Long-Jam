@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,11 +18,12 @@ public sealed class SaveProfile<T> where T : SaveProfileData {
 
 public abstract record SaveProfileData { }
 
-public record PlayerSaveData : SaveProfileData { 
+public record PlayerSaveData : SaveProfileData {
     public string lastScene;
     public Vector3 player;
     public List<Tool> itemsCollected;
     public List<Ingredient> ingredientsCollected; 
+    public Vector3 nextSpawn;
 }
 
 public record SceneSaveData : SaveProfileData {
