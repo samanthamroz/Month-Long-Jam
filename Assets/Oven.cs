@@ -21,6 +21,15 @@ public class Oven : InteractableObject
 
     private bool HasRequiredItems() {
         PlayerSaveData saveData = SaveManager.Load<PlayerSaveData>().saveData;
+
+        foreach (Ingredient i in saveData.ingredientsCollected) {
+            Debug.Log(i);
+        }
+        foreach (Tool i in saveData.itemsCollected) {
+            Debug.Log(i);
+        }
+        
+
         return saveData.ingredientsCollected.Contains(Ingredient.FLOUR) &&
             saveData.ingredientsCollected.Contains(Ingredient.MILK) &&
             saveData.ingredientsCollected.Contains(Ingredient.EGGS) &&

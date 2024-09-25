@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 7b0fc705df5be2a439c455a1ad2be8df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverDistance: 0.75
   hoverSpeed: 2
+  tool: 0
 --- !u!58 &1814766292133085144
 CircleCollider2D:
   m_ObjectHideFlags: 0
