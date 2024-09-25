@@ -6,12 +6,15 @@ public class UIController : MonoBehaviour
 {
     public GameObject canvasPrefab;
     private GameObject canvasRef;
-    private PlayerSaveData saveData = SaveManager.Load<PlayerSaveData>().saveData;
+    private PlayerSaveData saveData { //read only
+        get { return SaveManager.Load<PlayerSaveData>().saveData; }
+    }
 
     void Awake()
     {
         canvasRef = Instantiate(canvasPrefab);
         SetInteractPopupActive(false);
+        
     }
 
     public void SetInteractPopupActive(bool isActive, string text = "null") {
