@@ -22,6 +22,10 @@ public class FlowingWater : MonoBehaviour
         }
     }
 
+    public void ChangeDirection(Vector2 newDirection) {
+        directionVector = newDirection;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         try {
