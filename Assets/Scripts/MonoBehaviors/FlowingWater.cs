@@ -1,41 +1,17 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class FlowingWater : MonoBehaviour
 {
-    public enum Direction {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
-    }
-    public Direction direction;
-    private Vector2 directionVector;
+    public Vector2 directionVector;
     public float speed;
-    
+    private List<Rigidbody2D> floatingObjects;
+
     void Awake()
     {
-        switch (direction) {
-            case Direction.UP:
-                directionVector = Vector2.up;
-                break;
-            case Direction.DOWN:
-                directionVector = Vector2.down;
-                break;
-            case Direction.LEFT:
-                directionVector = Vector2.left;
-                break;
-            case Direction.RIGHT:
-                directionVector = Vector2.right;
-                break;
-        }
-
         floatingObjects = new List<Rigidbody2D>();
     }
-
-    private List<Rigidbody2D> floatingObjects;
 
     void FixedUpdate()
     {
@@ -44,18 +20,32 @@ public class FlowingWater : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("try0");
         try {
-            Debug.Log("add");
             floatingObjects.Add(other.gameObject.GetComponent<Rigidbody2D>());
         } catch { }
     }
 
-    void OnCollisionExit2D(Collision2D other) {
+    void OnTriggerExit2D(Collider2D other) {
         try {
             floatingObjects.Remove(other.gameObject.GetComponent<Rigidbody2D>());
         } catch { }
+    }
+
+    void OnCollision2DEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player")) {
+            Vector2 reverseDirection = new Vector2(-gameObject.GetComponent<Rigidbody2D>().velocity.x, -gameObject.GetComponent<Rigidbody2D>().velocity.y);
+            
+            Vector3 targetPosition = new Vector3(gameObject.transform.position.x + 1 * Math.Sign(reverseDirection.x),
+                gameObject.transform.position.y + 1 * Math.Sign(reverseDirection.y),
+                gameObject.transform.position.z);
+            
+            LeanTween.moveLocal(gameObject, targetPosition, .2f).setEaseOutExpo();
+            /*LeanTween.scale(gameObject, 
+                new Vector3(transform.localScale.x + jumpHeight, transform.localScale.y + jumpHeight, transform.localScale.z + jumpHeight),
+                jumpAnimationTime).setLoopPingPong().setLoopCount(2);*/
+        }
     }
 }

@@ -10,7 +10,7 @@ public abstract class InteractableObject : MonoBehaviour
         //do nothing, but can override if necessary
     }
 
-    public virtual void HoldInteraction(GameObject player) {
+    public virtual void HoldInteraction(GameObject player, Vector2 direction) {
         //do nothing, but can override if necessary
     }
 

@@ -14,10 +14,6 @@ public class PlayerController : MonoBehaviour
     public GameObject cameraPrefab;
     public float movementSpeed;
     public float cameraDrag;
-    public float characterDrag;
-    public float jumpDistance;
-    public float jumpHeight;
-    public float jumpAnimationTime;
     private bool menuActive = false;
     Animator animator;
     public AudioSource source;
@@ -88,8 +84,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool isHolding;
     private void OnMove(InputValue value) {
-        movementInput = value.Get<Vector2>();
+        if (isHolding && value.Get<Vector2>() != Vector2.zero) {
+            try {
+                PushableObject cast = (PushableObject)currentInteraction;
+                cast.HoldInteraction(gameObject, value.Get<Vector2>());
+            } catch { }
+        } else {
+            movementInput = value.Get<Vector2>();
+        }
     }
 
     private void OnInteract(InputValue value) {
@@ -106,14 +110,13 @@ public class PlayerController : MonoBehaviour
     private void OnInteractHold(InputValue value) {
         float isHeld = value.Get<float>();
         if (isHeld == 1f && currentInteraction != null) {
-            //button was just pressed
-            try {
-                PushableObject cast = (PushableObject)currentInteraction;
-                cast.HoldInteraction(gameObject);
-            } catch { }
-        } else if (isHeld == 0f && currentInteraction != null) {
+            isHolding = true;
+        } else if (isHeld == 0f) {
             //button was just unpressed
-            currentInteraction.EndInteraction(gameObject);
+            isHolding = false;
+            if (currentInteraction != null) {
+                currentInteraction.EndInteraction(gameObject);
+            }
         }
     }
 
@@ -142,26 +145,14 @@ public class PlayerController : MonoBehaviour
             currentInteraction = null;
             uic.SetInteractPopupActive(false);
         }
-
-        if (other.CompareTag("Water") && 
-                    other.bounds.Contains(gameObject.GetComponent<Collider2D>().bounds.min) && 
-                    other.bounds.Contains(gameObject.GetComponent<Collider2D>().bounds.max)) {
-            Vector2 reverseDirection = new Vector2(-gameObject.GetComponent<Rigidbody2D>().velocity.x, -gameObject.GetComponent<Rigidbody2D>().velocity.y);
-            
-            Vector3 targetPosition = new Vector3(gameObject.transform.position.x + jumpDistance * Math.Sign(reverseDirection.x),
-                gameObject.transform.position.y + jumpDistance * Math.Sign(reverseDirection.y),
-                gameObject.transform.position.z);
-            
-            LeanTween.moveLocal(gameObject, targetPosition, jumpAnimationTime).setEaseOutExpo();
-            /*LeanTween.scale(gameObject, 
-                new Vector3(transform.localScale.x + jumpHeight, transform.localScale.y + jumpHeight, transform.localScale.z + jumpHeight),
-                jumpAnimationTime).setLoopPingPong().setLoopCount(2);*/
-        }
     }
 
     void OnTriggerExit2D(Collider2D other) {
         if (gameObject.GetComponent<Collider2D>().GetContacts(new ContactPoint2D[0]) == 0) {
-            currentInteraction = null;
+            if (currentInteraction != null) {
+                currentInteraction.EndInteraction(gameObject);
+                currentInteraction = null;
+            }
             uic.SetInteractPopupActive(false);
         }
     }

@@ -102,6 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitboxYOffset: -0.5
+  tileWidth: 1
+  moveAnimationTime: 1
 --- !u!61 &8983517814312816721
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -9,12 +9,27 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: ce7c3d25aaf396e4892a07941cd064b1
   - enabled: 1
+    path: Assets/Scenes/SpawnAndOvenRoom.unity
+    guid: 998f9009a56c0bf49a6cf950ba5b3e84
+  - enabled: 1
     path: Assets/Scenes/TutorialRoom0.unity
     guid: 5504f7d6467645f40a0fa4dc0cc43a52
   - enabled: 1
-    path: Assets/Scenes/Demo-Sam.unity
-    guid: 6dedd919447a4ef44aefb8b6a710e947
+    path: Assets/Scenes/TutorialRoom1.unity
+    guid: 82111515184507b4c896a058147ec580
   - enabled: 1
-    path: Assets/Scenes/SpawnAndOvenRoom.unity
-    guid: 998f9009a56c0bf49a6cf950ba5b3e84
+    path: Assets/Scenes/TutorialRoom2.unity
+    guid: e46923588b2598646bd611416103944b
+  - enabled: 1
+    path: Assets/Scenes/WaterRoom0.unity
+    guid: c05bfa80be2ec1b449ae0fcac24b9957
+  - enabled: 1
+    path: Assets/Scenes/WaterRoom1.unity
+    guid: a65a03ea674aea14783828391b46fa4d
+  - enabled: 1
+    path: Assets/Scenes/WaterRoom2.unity
+    guid: 16ccea61e1d6dae41afb01e6ae2c1d23
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: ce03e2d313396ba43a0776653614b405
   m_configObjects: {}
