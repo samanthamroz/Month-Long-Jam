@@ -56,7 +56,9 @@ public class PushableObject : TransformableObject
 
         // Reapply the constraints
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; //relock x and y
-        gameObject.transform.parent.GetComponent<Crate>().CheckForWater();
+        try {
+            gameObject.transform.parent.GetComponent<Crate>().CheckForWater();
+        } catch {}
     }
 
     
