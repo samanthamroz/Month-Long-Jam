@@ -41,4 +41,9 @@ public class UIController : MonoBehaviour
         bool haveMixer = saveData.ingredientsCollected.Contains(Ingredient.BAKINGPOWDER);
         mixer.SetActive(haveMixer);
     }
+
+    public void SetNotEnoughItemsPopupActive(bool isActive) {
+        GameObject notEnoughItems = canvasRef.transform.GetChild(2).gameObject;
+        notEnoughItems.SetActive(isActive);
+    }
 }

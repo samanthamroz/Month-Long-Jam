@@ -16,6 +16,8 @@ public class Oven : InteractableObject
             SceneManager.LoadScene("Ending");
         } else {
             Debug.Log("don't have all items");
+            //player.GetComponent<UIController>().SetNotEnoughItemsPopupActive(true);
+            StartCoroutine(PopupCoroutine(player));
         }
     }
 
@@ -38,5 +40,11 @@ public class Oven : InteractableObject
             saveData.ingredientsCollected.Contains(Ingredient.SUGAR) &&
             saveData.itemsCollected.Contains(Tool.MIXER) &&
             saveData.itemsCollected.Contains(Tool.SPATULA);
+    }
+
+    private IEnumerator PopupCoroutine(GameObject player) {
+        player.GetComponent<UIController>().SetNotEnoughItemsPopupActive(true);
+        yield return new WaitForSeconds(2);
+        player.GetComponent<UIController>().SetNotEnoughItemsPopupActive(false);
     }
 }
