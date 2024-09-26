@@ -16,11 +16,16 @@ public class PushableObject : TransformableObject
 
     public override void Interaction(GameObject player)
     {
-        hoverText = "Push";
-        player.GetComponent<UIController>().UpdateInteractPopupText(hoverText);
+        if (gameObject.layer == 3) {
+            //jump
+        } else {
+            hoverText = "Push";
+            player.GetComponent<UIController>().UpdateInteractPopupText(hoverText);
+        }
     }
 
     public override void EndInteraction(GameObject player) {
+        
         hoverText = "Grab";
         player.GetComponent<UIController>().UpdateInteractPopupText(hoverText);
     }
@@ -37,7 +42,7 @@ public class PushableObject : TransformableObject
         }
 
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation; //unlock x and y
-        LeanTween.moveLocal(gameObject, moveToPosition, moveAnimationTime);
+        LeanTween.move(gameObject, moveToPosition, moveAnimationTime);
         
         StartCoroutine(player.GetComponent<PlayerController>().DoCutscene(moveAnimationTime));
         
@@ -51,6 +56,7 @@ public class PushableObject : TransformableObject
 
         // Reapply the constraints
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; //relock x and y
+        gameObject.transform.parent.GetComponent<Crate>().CheckForWater();
     }
 
     

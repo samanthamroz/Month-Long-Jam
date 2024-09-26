@@ -6,30 +6,43 @@ public class FlowingWater : MonoBehaviour
 {
     public Vector2 directionVector;
     public float speed;
-    private List<Rigidbody2D> floatingObjects;
+    private List<GameObject> floatingObjects;
 
     void Awake()
     {
-        floatingObjects = new List<Rigidbody2D>();
+        floatingObjects = new List<GameObject>();
     }
 
     void FixedUpdate()
     {
-        foreach (Rigidbody2D rb in floatingObjects) {
-            rb.AddForce(speed * directionVector);
+        foreach (GameObject obj in floatingObjects) {
+            if (obj.layer == 3) {
+                obj.GetComponent<Rigidbody2D>().AddForce(speed * directionVector);
+            }
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         try {
-            floatingObjects.Add(other.gameObject.GetComponent<Rigidbody2D>());
+            if (gameObject.GetComponent<Collider2D>().bounds.Contains(other.bounds.min)
+            && gameObject.GetComponent<Collider2D>().bounds.Contains(other.bounds.max)) {
+                floatingObjects.Add(other.gameObject);
+                other.gameObject.layer = 3;
+            }
         } catch { }
+    }
+
+    void OnTriggerStay2D(Collider2D other) {
+        //if it isn't already floating, keep checking
+        if (!floatingObjects.Contains(other.gameObject)) {
+            OnTriggerEnter2D(other);
+        }
     }
 
     void OnTriggerExit2D(Collider2D other) {
         try {
-            floatingObjects.Remove(other.gameObject.GetComponent<Rigidbody2D>());
+            floatingObjects.Remove(other.gameObject);
         } catch { }
     }
 
