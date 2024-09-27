@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ending.unity
     guid: ce03e2d313396ba43a0776653614b405
+  - enabled: 1
+    path: Assets/Scenes/Prologue.unity
+    guid: ae5529f6265acf6468e6b5f79becb0c8
+  - enabled: 1
+    path: Assets/Scenes/MixerRoom.unity
+    guid: 0e0a562295339744cb98e6b26d1baa35
   m_configObjects: {}
