@@ -11,6 +11,7 @@ public class RollableObject : ToggleableObject
     public int hitboxYOffset = -1;
     public float thrust = 5f;
     public PlayerController playerController;
+    public AudioClip roll;
 
     public override bool GetSaveState()
     {
@@ -33,28 +34,32 @@ public class RollableObject : ToggleableObject
     {
         float horizontalDifference = gameObject.transform.position.x - player.transform.position.x;
         float verticalDifference = gameObject.transform.position.y - (player.transform.position.y + hitboxYOffset);
-
+        roll = Resources.Load<AudioClip>("stonepush");
         //Debug.Log("Horizontal: " + horizontalDifference + ", Vertical: " + verticalDifference);
         Vector3 direction;
 
         if (math.abs(horizontalDifference) > math.abs(verticalDifference)) {
             if (horizontalDifference < 0) //check for left
             {
+                SoundFXManager.instance.PlaySoundFXClip(roll, transform, 1f);
                 direction  = Vector3.left;
 
             } else { //check for right
+                SoundFXManager.instance.PlaySoundFXClip(roll, transform, 1f);
                 direction = Vector3.right;
 
             }
         } else {
             if (verticalDifference < 0) //check for top
             {
+                SoundFXManager.instance.PlaySoundFXClip(roll, transform, 1f);
                 direction = Vector3.down;
 
             }
             //check for bottom
             else
             {
+                SoundFXManager.instance.PlaySoundFXClip(roll, transform, 1f);
                 direction = Vector3.up;
             }
         }

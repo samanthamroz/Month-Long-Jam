@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BreakableWall : ToggleableObject
 {
+    //public AudioSource source;
+    public AudioClip breaking;
     public override bool GetSaveState()
     {
         return gameObject.activeSelf;
@@ -16,8 +18,13 @@ public class BreakableWall : ToggleableObject
 
     public override void Interaction(GameObject player) {
         var saveData = SaveManager.Load<PlayerSaveData>().saveData;
+        breaking = Resources.Load<AudioClip>("rockbreak2");
+        //source.clip = breaking;
         if (saveData.itemsCollected.Contains(Tool.MIXER)) {
+            SoundFXManager.instance.PlaySoundFXClip(breaking, transform, 1f);
             gameObject.SetActive(false);
+            
+            //source.Play();
         }
     }
 
@@ -33,7 +40,11 @@ public class BreakableWall : ToggleableObject
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        breaking = Resources.Load<AudioClip>("rockbreak2");
         if (other.gameObject.tag == "Breaker") {
+            SoundFXManager.instance.PlaySoundFXClip(breaking, transform, 1f);
+            //source.clip = breaking;
+            //source.Play();
             gameObject.SetActive(false);
         }
     }

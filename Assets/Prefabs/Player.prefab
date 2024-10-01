@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7807661266312573656}
   - component: {fileID: 6014560840673807863}
   - component: {fileID: 4500908346131517151}
+  - component: {fileID: 5077541591092822347}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -157,13 +158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d87859a64710f4c85ff676328e4d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnFromSave: 1
   cameraPrefab: {fileID: 6102211899034122402, guid: b9a35fd32ea125341a09c5d356c92166, type: 3}
   movementSpeed: 10
   cameraDrag: 0.2
-  characterDrag: 0.01
-  jumpDistance: 2
-  jumpHeight: 0.2
-  jumpAnimationTime: 0.25
   source: {fileID: 4500908346131517151}
   footsteps: {fileID: 8300000, guid: cb6fbc0fd0ab79d4f98e91470ca7ad0a, type: 3}
 --- !u!114 &3684287244262418754
@@ -348,6 +346,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5077541591092822347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333543485935082318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16aa7b2a0a8b87d43ab8ffbe04e6ed33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFXObject: {fileID: 7721699694116725866, guid: 0f711faae26689547bd253d74eb4891e, type: 3}
 --- !u!1 &6804820040899692754
 GameObject:
   m_ObjectHideFlags: 0
