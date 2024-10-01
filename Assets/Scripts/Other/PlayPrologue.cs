@@ -7,15 +7,14 @@ using UnityEngine.UI;
 public class PlayPrologue : MonoBehaviour
 {
     public Image[] frames; 
-    public float displayTime = 4f; 
+    public float displayTime = 6f; 
     public float hideTime = 1f; 
     [SerializeField] private string firstScene;
+    public AudioSource source;
 
-    //Decide: Do we want this before or after the title screen? Once we figure that out I assume we can just load next scene in this script and also whatever script 
-    //might come before this one.
-    //also, if we had time could leantween be used to make this look better?
     private void Start()
     {
+        //source.Play();
         StartCoroutine(ControlImages());
     }
 

@@ -10,9 +10,11 @@ public class TitleScreenController : MonoBehaviour
     [SerializeField] private string firstScene;
     [SerializeField] private Vector3 spawnPositionInNextRoom;
     public GameObject continueButton, newGameButton, settingsButton, quitButton;
+    public AudioSource source;
 
     void Start()
     {
+        //source.Play();
         if (!SaveManager.GameDataExists()) {
             continueButton.GetComponent<Button>().interactable = false;
         }
