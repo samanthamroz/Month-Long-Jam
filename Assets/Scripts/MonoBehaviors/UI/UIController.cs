@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -57,8 +58,15 @@ public class UIController : MonoBehaviour
         mixer.SetActive(saveData.itemsCollected.Contains(Tool.SPATULA));
     }
 
-    public void SetNotEnoughItemsPopupActive(bool isActive) {
+    public void SetDialoguePopupActive(bool isActive, string text = null) {
         GameObject notEnoughItems = canvasRef.transform.GetChild(2).gameObject;
+
+        if (text != null) {
+            notEnoughItems.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = text;
+        } else {
+            notEnoughItems.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
+        }
+        
         notEnoughItems.SetActive(isActive);
     }
 }

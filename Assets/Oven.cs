@@ -35,8 +35,8 @@ public class Oven : InteractableObject
     }
 
     private IEnumerator PopupCoroutine(GameObject player) {
-        player.GetComponent<UIController>().SetNotEnoughItemsPopupActive(true);
+        player.GetComponent<UIController>().SetDialoguePopupActive(true, "I don't have enough items to bake yet!");
         yield return new WaitForSeconds(2);
-        player.GetComponent<UIController>().SetNotEnoughItemsPopupActive(false);
+        player.GetComponent<UIController>().SetDialoguePopupActive(false);
     }
 }

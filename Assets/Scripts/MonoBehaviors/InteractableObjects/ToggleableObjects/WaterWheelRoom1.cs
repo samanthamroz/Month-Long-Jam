@@ -8,6 +8,13 @@ public class WaterWheelRoom1 : ToggleableObject
     public float animationTime;
     public GameObject breakableWall, leftStill, rightStill, rightFlowing, pipeFlowing;
 
+    private bool wallBroken;
+
+    void Awake()
+    {
+        wallBroken = !breakableWall.activeSelf;
+    }
+
     public override bool GetSaveState()
     {
         return hasTurned;
@@ -32,6 +39,20 @@ public class WaterWheelRoom1 : ToggleableObject
         StartCoroutine(player.GetComponent<PlayerController>().DoCutscene(animationTime));
         ActivateRoom();
         hasTurned = true;
+    }
+
+    void Update()
+    {
+        if (!wallBroken && !breakableWall.activeSelf) {
+            UpdateRoomAfterBreak();
+            wallBroken = true;
+        }
+    }
+
+    private void UpdateRoomAfterBreak() {
+        rightStill.SetActive(false);
+        rightFlowing.SetActive(true);
+        LeanTween.moveY(rightFlowing, 0, animationTime);
     }
 
     private void ActivateRoom() {
