@@ -23,6 +23,7 @@ public record PlayerSaveData : SaveProfileData {
     public Vector3 player;
     public List<Tool> itemsCollected;
     public List<Ingredient> ingredientsCollected; 
+    public bool[] wheelsActivated = {false, false, false};
     public Vector3 nextSpawn;
 }
 

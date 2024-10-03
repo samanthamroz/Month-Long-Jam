@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 //test
@@ -166,14 +167,18 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator DoCutscene(float cutsceneTime, bool disableHitbox = false)
     {
-        StartCoroutine(uic.DoCutscene(cutsceneTime));
-        StartCutscene();
-        if (disableHitbox) {
-            gameObject.GetComponent<Collider2D>().enabled = false;
+        if (cutsceneTime != 0f) {
+            StartCoroutine(uic.DoCutscene(cutsceneTime));
+            StartCutscene();
+            if (disableHitbox) {
+                gameObject.GetComponent<Collider2D>().enabled = false;
+            }
+            yield return new WaitForSeconds(cutsceneTime);
+            gameObject.GetComponent<Collider2D>().enabled = true;
+            EndCutscene();
+        } else {
+            yield return null;
         }
-        yield return new WaitForSeconds(cutsceneTime);
-        gameObject.GetComponent<Collider2D>().enabled = true;
-        EndCutscene();
     }
 
     public void StartCutscene() {

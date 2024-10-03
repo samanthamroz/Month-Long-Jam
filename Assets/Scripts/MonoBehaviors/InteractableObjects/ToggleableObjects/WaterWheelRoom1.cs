@@ -42,19 +42,18 @@ public class WaterWheelRoom1 : ToggleableObject
 
 
         PlayerSaveData saveData;
-
         try {
             saveData = SaveManager.Load<PlayerSaveData>().saveData;
-            //saveData.ingredientsCollected.Add(ingredient);
+            saveData.wheelsActivated[0] = true;
         } catch {
             saveData = new PlayerSaveData {
                 lastScene = SceneManager.GetActiveScene().name,
                 player = player.transform.position,
-                itemsCollected = new List<Tool>(),
-                //ingredientsCollected = new List<Ingredient>{ingredient}
             };
+            saveData.wheelsActivated[0] = true;
         }
         SaveManager.Save(new SaveProfile<PlayerSaveData>(saveData));
+        Autosave.SaveRoom();
     }
 
     void Update()
@@ -83,12 +82,12 @@ public class WaterWheelRoom1 : ToggleableObject
             rightFlowing.SetActive(true);
             LeanTween.moveY(rightFlowing, 0, animationTime);
         }
-        
     }
 
     public override void LoadFromSavedState(bool savedState)
     {
-        if (savedState) {
+        hasTurned = savedState;
+        if (hasTurned) {
             animationTime = 0f;
             ActivateRoom();
         }

@@ -18,6 +18,14 @@ public class PlayPrologue : MonoBehaviour
         StartCoroutine(ControlImages());
     }
 
+    void Update()
+    {
+        if (Input.anyKeyDown)
+        {
+            SceneManager.LoadScene(firstScene);
+        }
+    }
+
     private IEnumerator ControlImages()
     {
         foreach (Image frame in frames)
