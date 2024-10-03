@@ -2,13 +2,12 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 //test
 public class PlayerController : MonoBehaviour
 {
     public bool spawnFromSave = true;
     private UIController uic;
-    private Camera cam;
+    public Camera cam;
     private InteractableObject currentInteraction;
     private Vector2 movementInput;
     public GameObject cameraPrefab;
@@ -45,6 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         if (movementInput != Vector2.zero) {
             LeanTween.cancel(cam.gameObject);
+            LeanTween.cancel(uic.messageRef);
 
             //move character
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(movementInput.x, movementInput.y) * movementSpeed;
@@ -53,6 +53,13 @@ public class PlayerController : MonoBehaviour
             LeanTween.moveLocal(cam.gameObject, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -10), cameraDrag).setEaseInBounce().setEaseOutSine();
             animator.SetFloat("moveX", movementInput.x);
             animator.SetFloat("moveY", movementInput.y);
+
+            //move ui
+            Vector3 wtsp = RectTransformUtility.WorldToScreenPoint(cam, gameObject.transform.position);
+            Vector3 uiPos = new(wtsp.x, wtsp.y + 300, 0);
+            LeanTween.move(uic.messageRef, uiPos, cameraDrag / 2);
+
+            //sound
             if (!source.isPlaying)
             {
                 source.clip = footsteps;
@@ -159,6 +166,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator DoCutscene(float cutsceneTime, bool disableHitbox = false)
     {
+        StartCoroutine(uic.DoCutscene(cutsceneTime));
         StartCutscene();
         if (disableHitbox) {
             gameObject.GetComponent<Collider2D>().enabled = false;

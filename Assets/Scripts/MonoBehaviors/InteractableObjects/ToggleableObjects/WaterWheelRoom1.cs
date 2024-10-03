@@ -6,7 +6,7 @@ public class WaterWheelRoom1 : ToggleableObject
 {
     private bool hasTurned;
     public float animationTime;
-    public GameObject breakableWall, leftStill, rightStill, rightFlowing, pipeFlowing;
+    public GameObject breakableWall, leftStill, rightStill, rightFlowing, pipeFlowing, autoLoadingZone;
 
     private bool wallBroken;
 
@@ -39,6 +39,22 @@ public class WaterWheelRoom1 : ToggleableObject
         StartCoroutine(player.GetComponent<PlayerController>().DoCutscene(animationTime));
         ActivateRoom();
         hasTurned = true;
+
+
+        PlayerSaveData saveData;
+
+        try {
+            saveData = SaveManager.Load<PlayerSaveData>().saveData;
+            //saveData.ingredientsCollected.Add(ingredient);
+        } catch {
+            saveData = new PlayerSaveData {
+                lastScene = SceneManager.GetActiveScene().name,
+                player = player.transform.position,
+                itemsCollected = new List<Tool>(),
+                //ingredientsCollected = new List<Ingredient>{ingredient}
+            };
+        }
+        SaveManager.Save(new SaveProfile<PlayerSaveData>(saveData));
     }
 
     void Update()
@@ -53,6 +69,7 @@ public class WaterWheelRoom1 : ToggleableObject
         rightStill.SetActive(false);
         rightFlowing.SetActive(true);
         LeanTween.moveY(rightFlowing, 0, animationTime);
+        autoLoadingZone.SetActive(true);
     }
 
     private void ActivateRoom() {

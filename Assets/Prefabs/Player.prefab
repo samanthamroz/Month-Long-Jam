@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasPrefab: {fileID: 8417615252876222266, guid: 8db5df1bc28d0784eb54588d06383eca, type: 3}
+  floatingCanvasPrefab: {fileID: 4342712027805607170, guid: 4e9ad6308c6dd644b9efe6ac62e874f8, type: 3}
 --- !u!95 &7807661266312573656
 Animator:
   serializedVersion: 5

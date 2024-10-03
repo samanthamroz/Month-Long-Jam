@@ -1,12 +1,13 @@
-using System;
-using TMPro;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
+using TMPro;
+using System;
 
 public class UIController : MonoBehaviour
 {
-    public GameObject canvasPrefab;
-    private GameObject canvasRef;
+    public GameObject canvasPrefab, floatingCanvasPrefab;
+    private GameObject canvasRef, floatingCanvasRef;
+    public GameObject messageRef;
     private PlayerSaveData saveData { //read only
         get { return SaveManager.Load<PlayerSaveData>().saveData; }
     }
@@ -14,8 +15,14 @@ public class UIController : MonoBehaviour
     void Awake()
     {
         canvasRef = Instantiate(canvasPrefab);
+        floatingCanvasRef = Instantiate(floatingCanvasPrefab);
+        messageRef = floatingCanvasRef.transform.GetChild(0).gameObject;
+    }
+
+    void Start()
+    {
+        floatingCanvasRef.GetComponent<Canvas>().worldCamera = GetComponent<PlayerController>().cam;
         SetInteractPopupActive(false);
-        
     }
 
     public void SetInteractPopupActive(bool isActive, string text = "null") {
@@ -58,15 +65,26 @@ public class UIController : MonoBehaviour
         mixer.SetActive(saveData.itemsCollected.Contains(Tool.SPATULA));
     }
 
-    public void SetDialoguePopupActive(bool isActive, string text = null) {
-        GameObject notEnoughItems = canvasRef.transform.GetChild(2).gameObject;
+    public IEnumerator DoCutscene(float cutsceneTime) {  
+        Transform bars = canvasRef.transform.GetChild(2);
+        LeanTween.moveLocalY(bars.GetChild(0).gameObject, 450, 0.2f).setEaseInBounce().setEaseOutSine();
+        LeanTween.moveLocalY(bars.GetChild(1).gameObject, -550, 0.2f).setEaseInBounce().setEaseOutSine();
+        
+        SetDialoguePopupActive(true, "!");
+        yield return new WaitForSeconds(cutsceneTime);
+        SetDialoguePopupActive(false);
 
+        LeanTween.moveLocalY(bars.GetChild(0).gameObject, 575, 0.2f).setEaseInBounce().setEaseOutSine();
+        LeanTween.moveLocalY(bars.GetChild(1).gameObject, -675, 0.2f).setEaseInBounce().setEaseOutSine();
+    }
+
+    public void SetDialoguePopupActive(bool isActive, string text = null) {
         if (text != null) {
-            notEnoughItems.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = text;
+            messageRef.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = text;
         } else {
-            notEnoughItems.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
+            messageRef.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
         }
         
-        notEnoughItems.SetActive(isActive);
+        messageRef.SetActive(isActive);
     }
 }
