@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class IngredientPickup : Pickup
 {
     public Ingredient ingredient;
+    public AudioClip collect;
     public override void Interaction(GameObject player)
     {
         PlayerSaveData saveData;
+
         try {
             saveData = SaveManager.Load<PlayerSaveData>().saveData;
             saveData.ingredientsCollected.Add(ingredient);
@@ -21,6 +23,9 @@ public class IngredientPickup : Pickup
             };
         }
         SaveManager.Save(new SaveProfile<PlayerSaveData>(saveData));
+
+        collect = Resources.Load<AudioClip>("ingredient");
+        SoundFXManager.instance.PlaySoundFXClip(collect, transform, 1f);
 
         gameObject.SetActive(false);
 

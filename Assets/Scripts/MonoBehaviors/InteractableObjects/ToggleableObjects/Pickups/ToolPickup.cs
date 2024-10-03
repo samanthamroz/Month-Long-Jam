@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ToolPickup : Pickup
 {
     public Tool tool;
+    public AudioClip collect;
     public override void Interaction(GameObject player)
     {
         PlayerSaveData saveData;
@@ -21,6 +22,9 @@ public class ToolPickup : Pickup
             };
         }
         SaveManager.Save(new SaveProfile<PlayerSaveData>(saveData));
+
+        collect = Resources.Load<AudioClip>("treasureitem");
+        SoundFXManager.instance.PlaySoundFXClip(collect, transform, 1f);
 
         gameObject.SetActive(false);
 
