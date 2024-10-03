@@ -15,6 +15,10 @@ public class PlayPrologue : MonoBehaviour
     private void Start()
     {
         //source.Play();
+        PlayerSaveData saveData = new PlayerSaveData {
+            nextSpawn = new Vector3(-1, 10, 0)
+        };
+        SaveManager.Save(new SaveProfile<PlayerSaveData>(saveData));
         StartCoroutine(ControlImages());
     }
 
@@ -49,4 +53,3 @@ public class PlayPrologue : MonoBehaviour
         SceneManager.LoadScene(firstScene);
     }
 }
-
