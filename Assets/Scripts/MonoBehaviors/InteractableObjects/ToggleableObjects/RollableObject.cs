@@ -5,25 +5,13 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class RollableObject : ToggleableObject
+public class RollableObject : InteractableObject
 {
     public bool canBreakObjects;
     public int hitboxYOffset = -1;
     public float thrust = 5f;
     public PlayerController playerController;
     public AudioClip roll;
-
-    public override bool GetSaveState()
-    {
-        return gameObject.activeSelf;
-    }
-
-    public override void LoadFromSavedState(bool savedState)
-    {
-        if (!savedState) {
-            gameObject.SetActive(false);
-        }
-    }
 
     public override string HoverText()
     {
@@ -66,11 +54,10 @@ public class RollableObject : ToggleableObject
 
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation; //unlock x and y
         gameObject.GetComponent<Rigidbody2D>().velocity = direction * thrust;
-
+        Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity);
         //take away player's movement
-
+        playerController = player.GetComponent<PlayerController>();
         StartCoroutine(RollUntilHit());
-
     }
 
     private IEnumerator RollUntilHit()

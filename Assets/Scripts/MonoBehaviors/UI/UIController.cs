@@ -26,7 +26,13 @@ public class UIController : MonoBehaviour
     }
 
     public void SetInteractPopupActive(bool isActive, string text = "null") {
-        GameObject popup = canvasRef.transform.GetChild(0).gameObject;
+        GameObject popup;
+        try {
+            popup = canvasRef.transform.GetChild(0).gameObject;
+        } catch {
+            return;
+        }
+
         popup.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = text;
         if (text != null) {
             popup.SetActive(isActive);
@@ -65,17 +71,22 @@ public class UIController : MonoBehaviour
         mixer.SetActive(saveData.itemsCollected.Contains(Tool.SPATULA));
     }
 
-    public IEnumerator DoCutscene(float cutsceneTime) {  
+    public IEnumerator StartCutscene() {
         Transform bars = canvasRef.transform.GetChild(2);
         LeanTween.moveLocalY(bars.GetChild(0).gameObject, 450, 0.2f).setEaseInBounce().setEaseOutSine();
         LeanTween.moveLocalY(bars.GetChild(1).gameObject, -550, 0.2f).setEaseInBounce().setEaseOutSine();
-        
-        SetDialoguePopupActive(true, "!");
-        yield return new WaitForSeconds(cutsceneTime);
+    
+        yield return null;
+    }
+
+    public IEnumerator EndCutscene() {
         SetDialoguePopupActive(false);
 
+        Transform bars = canvasRef.transform.GetChild(2);
         LeanTween.moveLocalY(bars.GetChild(0).gameObject, 575, 0.2f).setEaseInBounce().setEaseOutSine();
         LeanTween.moveLocalY(bars.GetChild(1).gameObject, -675, 0.2f).setEaseInBounce().setEaseOutSine();
+
+        yield return null;
     }
 
     public void SetDialoguePopupActive(bool isActive, string text = null) {

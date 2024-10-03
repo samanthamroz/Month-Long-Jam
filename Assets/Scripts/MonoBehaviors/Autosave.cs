@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Autosave : MonoBehaviour
 {
-    void Awake()
+    void Start()
     {
         LoadRoom();
     }
@@ -56,8 +56,13 @@ public class Autosave : MonoBehaviour
         }
 
         ToggleableObject[] sObjects = (ToggleableObject[])FindObjectsOfType(typeof(ToggleableObject));
+        Debug.Log(saveData.objectStates.Count());
         for (int i = 0; i < sObjects.Count(); i++) {
-            sObjects[i].LoadFromSavedState(saveData.objectStates[i]);
+            try {
+                sObjects[i].LoadFromSavedState(saveData.objectStates[i]);
+            } catch {
+                sObjects[i].LoadFromSavedState(false);
+            }
         }
     }
 }

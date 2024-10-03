@@ -45,7 +45,11 @@ public class BreakableWall : ToggleableObject
             SoundFXManager.instance.PlaySoundFXClip(breaking, transform, 1f);
             //source.clip = breaking;
             //source.Play();
-            gameObject.SetActive(false);
+            try {
+                other.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            } finally {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -168,7 +168,6 @@ public class PlayerController : MonoBehaviour
     public IEnumerator DoCutscene(float cutsceneTime, bool disableHitbox = false)
     {
         if (cutsceneTime != 0f) {
-            StartCoroutine(uic.DoCutscene(cutsceneTime));
             StartCutscene();
             if (disableHitbox) {
                 gameObject.GetComponent<Collider2D>().enabled = false;
@@ -182,10 +181,12 @@ public class PlayerController : MonoBehaviour
     }
 
     public void StartCutscene() {
+        StartCoroutine(uic.StartCutscene());
         GetComponent<PlayerInput>().SwitchCurrentActionMap("Cutscene");
     }
 
     public void EndCutscene() {
+        StartCoroutine(uic.EndCutscene());
         GetComponent<PlayerInput>().SwitchCurrentActionMap("Ground");
     }
 }

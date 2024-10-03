@@ -2779,6 +2779,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingZone
       objectReference: {fileID: 0}
+    - target: {fileID: 3040238261762651473, guid: fae3c362b117edc4aa0afbfbf1b4fa89, type: 3}
+      propertyPath: m_Size.x
+      value: 1.1451792
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040238261762651473, guid: fae3c362b117edc4aa0afbfbf1b4fa89, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.023016274
+      objectReference: {fileID: 0}
     - target: {fileID: 8420442172749308250, guid: fae3c362b117edc4aa0afbfbf1b4fa89, type: 3}
       propertyPath: sceneToLoad
       value: TutorialRoom0
@@ -2801,7 +2809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8638648899470119618, guid: fae3c362b117edc4aa0afbfbf1b4fa89, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.4
+      value: -4.567
       objectReference: {fileID: 0}
     - target: {fileID: 8638648899470119618, guid: fae3c362b117edc4aa0afbfbf1b4fa89, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2835,7 +2843,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3422845452278191470, guid: fae3c362b117edc4aa0afbfbf1b4fa89, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
